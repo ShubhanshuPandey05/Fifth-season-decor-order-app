@@ -1,0 +1,4 @@
+**/.env
+**/node_modules
+maildesign.html
+service-account.json

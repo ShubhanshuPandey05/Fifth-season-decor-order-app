@@ -1,0 +1,47 @@
+name: Generate a build and push to another branch
+
+on:
+  push:
+    branches:
+      - main
+
+permissions:
+  contents: write
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    name: Build and Push
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@v3
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: '20'
+      
+      - name: Configure git pull behavior
+        run: git config pull.ff only
+
+      - name: Pull latest changes
+        run: git pull origin main
+
+      - name: Install dependencies
+        run: |
+          cd client
+          npm install
+
+      - name: Build the project
+        run: |
+          cd client
+          npm run build
+
+      - name: Push build to build branch
+        uses: s0/git-publish-subdir-action@develop
+        env:
+          REPO: self
+          BRANCH: build # The branch name where you want to push the assets
+          FOLDER: client/dist # Ensure this is the correct path to the build directory
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          MESSAGE: "Build: (${GITHUB_SHA}) ${GITHUB_EVENT_NAME}" # Commit message with SHA and event name
