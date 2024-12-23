@@ -17,8 +17,8 @@ const useLogin = () => {
 
         showLoading();
 
-        let response = await fetch("http://localhost:8000/api/auth/login/",{
-        // let response = await fetch("/api/auth/login/",{
+        // let response = await fetch("http://localhost:8000/api/auth/login/",{
+        let response = await fetch("/api/auth/login/",{
         // let response = await fetch("https://order-flow-api-ek8r.onrender.com/api/auth/login/",{
         // let response = await fetch("https://order-flow-api.vercel.app/api/auth/login/",{
             method: "post",

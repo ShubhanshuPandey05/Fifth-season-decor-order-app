@@ -59,8 +59,8 @@ export default function UserComponent() {
     async function fetchCatalog() {
       try {
         showLoading();
-        const response = await fetch("http://localhost:8000/api/get-order-catalog", {
-          // const response = await fetch("/api/get-order-items", {
+        // const response = await fetch("http://localhost:8000/api/get-order-catalog", {
+        const response = await fetch("/api/get-order-catalog", {
           // const response = await fetch("https://order-flow-api-ek8r.onrender.com/api/get-order-items", {
           // const response = await fetch("https://order-flow-api.vercel.app/api/get-order-items", {
           method: "GET",
@@ -180,9 +180,9 @@ export default function UserComponent() {
         return processedItem;
       });
       // const response = await fetch("https://order-flow-api.vercel.app/api/update-spreadsheet", {
-      // const response = await fetch("/api/update-spreadsheet", {
-      // const response = await fetch("https://order-flow-api-ek8r.onrender.com/api/update-spreadsheet", {
-      const response = await fetch("http://localhost:8000/api/update-spreadsheet", {
+      const response = await fetch("/api/update-spreadsheet", {
+        // const response = await fetch("https://order-flow-api-ek8r.onrender.com/api/update-spreadsheet", {
+        // const response = await fetch("http://localhost:8000/api/update-spreadsheet", {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({ companyName, poNo, customerName, contactNo, state, city, items: processedItems, dispatchThrough, deliveryTo, deliveryAddress, orderNote, orderType }),
@@ -190,9 +190,21 @@ export default function UserComponent() {
       });
 
       if (response.ok) {
-        setItems([{ name: "", unit: "", quantity: "", quality: "", clrNo: "", width: "", rate: "", amount: "", itemNote: "" }]);
-        setIsOtherCatalog(false)
-        setIsOtherQuality(false)
+        setItems([{
+          name: "",
+          unit: "",
+          quantity: "",
+          quality: "",
+          clrNo: "",
+          width: "",
+          rate: "",
+          amount: "",
+          itemNote: "",
+          customCatalog: "",
+          customQuality: "",
+          isOtherCatalog: false,
+          catalogSelected: false,
+        }]);
         setDispatchThrough("");
         setDeliveryTo("");
         setOrderNote("")
@@ -225,7 +237,8 @@ export default function UserComponent() {
 
     try {
       showLoading();
-      const response = await fetch(`http://localhost:8000/api/get-order-quality/${catalogName}`, {
+      const response = await fetch(`/api/get-order-quality/${catalogName}`, {
+        // const response = await fetch(`http://localhost:8000/api/get-order-quality/${catalogName}`, {
         method: 'GET',
         headers: { 'Content-Type': 'application/json' },
         credentials: 'include',
