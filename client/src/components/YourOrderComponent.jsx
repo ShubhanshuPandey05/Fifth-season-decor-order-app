@@ -81,16 +81,16 @@ const YourOrder = () => {
             {/* Header with Order Status */}
             <div className="flex justify-between items-center mb-4">
               <h3 className="font-semibold text-sm px-3 py-1 rounded-full shadow-md bg-gray-200">{order[1]}</h3>
-              <div className={`col-span-1 text-base font-bold px-3 py-1 rounded-full shadow-md ${order[0] == "ROLL" ? "bg-pink-200" : "bg-blue-200"} `}>{order[0]}</div>
+              <div className={`col-span-1 text-base font-bold px-3 py-1 rounded-full shadow-md ${order[0] == "ROLL" ? "bg-pink-200" : order[0] == "CUT" ? "bg-blue-200" : "bg-purple-200"} `}>{order[0]}</div>
               <div
-                className={`text-sm font-semibold px-3 py-1 rounded-full shadow-md ${["Pending", "Hold"].includes(order[19])
+                className={`text-sm font-semibold px-3 py-1 rounded-full shadow-md ${["Pending", "Hold"].includes(order[22])
                     ? "bg-yellow-100 text-yellow-500"
-                    : ["Cancel", "Reject", "Declined"].includes(order[19])
+                    : ["Cancel", "Reject", "Declined"].includes(order[22])
                       ? "bg-red-100 text-red-500"
                       : "bg-green-100 text-green-500"
                   }`}
               >
-                {order[19]}
+                {order[22]}
               </div>
 
             </div>
@@ -105,11 +105,11 @@ const YourOrder = () => {
             <div className="grid grid-cols-2 gap-y-3 text-gray-700">
               <div className="col-span-2 font-bold text-lg  text-gray-500 mb-2">{order[11]}</div>
 
-              <div className="font-semibold">Color No.</div>
+              {/* <div className="font-semibold">Color No.</div>
               <div className="col-span-1">{": " + order[12]}</div>
 
               <div className="font-semibold">Width</div>
-              <div className="col-span-1">{": " + order[13]}</div>
+              <div className="col-span-1">{": " + order[13]}</div> */}
 
               <div className="font-semibold">Quantity</div>
               <div className="col-span-1">{": " + order[14] + " " + order[15]}</div>
@@ -128,9 +128,11 @@ const YourOrder = () => {
 
               <div className="font-semibold">Docket No.</div>
               <div className="col-span-1">: {order[25] ? order[25] : " "}</div>
+              {/* <div className="col-span-1">: <a className="h-5 w-10 bg-green-500 text-white px-3 py-1 rounded-xl" target="_blank" href={order[25] ? order[25] : " "}>View LR</a></div> */}
+
 
               <div className="font-semibold">Remark</div>
-              <div className="col-span-1 italic text-gray-500">{": " + order[20]}</div>
+              <div className="col-span-1 text-gray-500">: <span className="italic">{order[23]?order[23]:""}</span></div>
             </div>
           </div>
         ))}

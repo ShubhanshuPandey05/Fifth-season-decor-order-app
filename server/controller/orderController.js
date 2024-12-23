@@ -134,7 +134,7 @@ export const updateOrder = async (req, res) => {
     };
 
     // Determine the sheet name based on orderType
-    const SHEET_NAME = orderType === "CUT" ? "CUT" : "ROLL";
+    const SHEET_NAME = orderType === "CUT" ? "CUT" : orderType === "ROLL" ? "ROLL" : "FOLDER";
 
     // Fetch existing rows to determine the next SR NO
     const getResponse = await sheets.spreadsheets.values.get({
@@ -151,11 +151,11 @@ export const updateOrder = async (req, res) => {
       lastSRNo = parseInt(lastRow[0]) || 0; // SR NO is in the third column (index 2)
     } // Next SR NO (assuming header is in the first row)
 
-    console.log(existingRows,"hii");
-    console.log(existingRows[existingRows.length - 1]);
+    // console.log(existingRows,"hii");
+    // console.log(existingRows[existingRows.length - 1]);
     
 
-    console.log(lastSRNo);
+    // console.log(lastSRNo);
 
     const srNo = lastSRNo + 1;
 
@@ -181,10 +181,10 @@ export const updateOrder = async (req, res) => {
         item.rate || "", // Rate
         item.amount || "", // Amount
         dispatchThrough, // MODE OF DISPATCH
-        "Pending", // Order Status
-        orderNote,// Order Note
         deliveryTo,
         deliveryAddress,
+        orderNote,// Order Note
+        "Pending", // Order Status
       ];
     });
 

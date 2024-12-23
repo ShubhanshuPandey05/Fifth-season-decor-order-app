@@ -20,7 +20,23 @@ export const signUp = async (req, res) => {
 
         // Generate a temporary token and verification link
         const tempToken = Math.floor(Math.random() * 9000000) + 1000000;
-        const tempLink = `<a href="http://localhost:8000/api/auth/user/userVerification/${tempToken}?MobileNo=${MobileNo}">Verify User</a>`;
+        const tempLink = `<a href="http://localhost:8000/api/auth/user/userVerification/${tempToken}?MobileNo=${MobileNo}" 
+   style="
+     display: inline-block;
+     background-color: #007bff;
+     color: white;
+     padding: 12px 24px;
+     text-decoration: none;
+     border-radius: 8px;
+     font-weight: bold;
+     font-size: 16px;
+     text-align: center;
+     margin-top: 25px;
+     margin-bottom: 25px;
+     transition: background-color 0.3s ease;
+   ">
+  Verify User
+</a>`;
         // const tempLink = `<a href="https://order-flow-api-ek8r.onrender.com/api/auth/user/userVerification/${tempToken}?MobileNo=${MobileNo}">Verify User</a>`;
 
         // Create the new user instance
@@ -39,7 +55,7 @@ export const signUp = async (req, res) => {
         // Prepare form data for the email notification
         const formData = {
             Companyname,
-            "MobileNo/LoginId":MobileNo,
+            "MobileNo/LoginId": MobileNo,
             State,
             City,
             GST_No,
@@ -49,7 +65,7 @@ export const signUp = async (req, res) => {
         // Send an email notification
         try {
             let response = await fetch(`https://formsflow.onrender.com/api/sendmail/mail/custom/22amtics298@gmail.com`, {
-            // let response = await fetch(`https://formsflow.onrender.com/api/sendmail/mail/custom/gaurav2tally@gmail.com`, {
+                // let response = await fetch(`https://formsflow.onrender.com/api/sendmail/mail/custom/gaurav2tally@gmail.com`, {
                 method: "POST",
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -70,7 +86,7 @@ export const signUp = async (req, res) => {
             user = await User.findOne({ MobileNo });
 
             res.status(200).json({
-               message:"Sign Up Success"
+                message: "Sign Up Success"
             });
         } catch (fetchError) {
             console.error("Error sending email notification:", fetchError);
@@ -113,15 +129,17 @@ export const login = async (req, res) => {
             // console.log(user.Password)
             if (isMatch) {
                 if (user.Authorized == true) {
-                    const token = generateAndSetCookies(user._id,res);
-                    res.status(200).json({userData:{
-                        _id: user._id,
-                        Companyname: user.Companyname,
-                        State: user.State,
-                        City: user.City,
-                        MobileNo: user.MobileNo,
-                    },jwt:token})
-                }else{
+                    const token = generateAndSetCookies(user._id, res);
+                    res.status(200).json({
+                        userData: {
+                            _id: user._id,
+                            Companyname: user.Companyname,
+                            State: user.State,
+                            City: user.City,
+                            MobileNo: user.MobileNo,
+                        }, jwt: token
+                    })
+                } else {
                     res.status(401).json("User Not Authorized")
                 }
             }

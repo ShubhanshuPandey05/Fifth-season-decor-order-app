@@ -24,6 +24,7 @@ const sheets = google.sheets({ version: "v4", auth });
 const SPREADSHEET_ID = process.env.SPREADSHEET_ID;
 const SHEET_NAME_CUT = "CUT";
 const SHEET_NAME_ROLL = "ROLL";
+const SHEET_NAME_FOLDER = "FOLDER";
 const SHEET_NAME2 = "CATALOGUE LIST";
 const SHEET_NAME3 = "COLOR NO";
 const SHEET_NAME4 = "WIDTH";
@@ -88,8 +89,28 @@ export const getFilteredRows = async (req, res) => {
     //   return res.status(200).json({ message: "No Orders." });
     // }
 
+
+    const result3 = await sheets.spreadsheets.values.get({
+      spreadsheetId: SPREADSHEET_ID,
+      range: SHEET_NAME_FOLDER,
+    });
+
+    const row3 = result3.data.values || [];
+    const headers3 = row3[0];
+    const contactIndex3 = headers3.indexOf("MOBILE NO");
+    if (contactIndex3 === -1) {
+      return res.status(500).json({ message: "Contact no. column not found." });
+      }
+      const filteredRows3 = row3.slice(1)
+      .filter((row) => row[contactIndex3] === contact)
+      .map((row) => ["FOLDER",...row]); // Add orderType "FOLDER"
+      // if (filteredRows3.length === 0) {
+      //   return res.status(200).json({ message: "No Orders." });
+      // }
+
+
     // Combine both arrays
-    const resultantRow = [...filteredRows, ...filteredRows2];
+    const resultantRow = [...filteredRows, ...filteredRows2, ...filteredRows3];
     // console.log(resultantRow);
 
     res.json({ data: resultantRow });

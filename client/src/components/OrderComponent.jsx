@@ -19,8 +19,23 @@ export default function UserComponent() {
   const [state] = useState(authUser.State)
   const [city] = useState(authUser.City)
   const [items, setItems] = useState([
-    { name: "", unit: "", quantity: "", quality: "", clrNo: "", width: "", rate: "", amount: "", itemNote: "" },
+    {
+      name: "",
+      unit: "",
+      quantity: "",
+      quality: "",
+      clrNo: "",
+      width: "",
+      rate: "",
+      amount: "",
+      itemNote: "",
+      customCatalog: "",
+      customQuality: "",
+      isOtherCatalog: false,
+      catalogSelected: false
+    },
   ]);
+
   const [dispatchThrough, setDispatchThrough] = useState("");
   const [deliveryTo, setDeliveryTo] = useState("");
   const [deliveryAddress, setDeliveryAddress] = useState("");
@@ -33,6 +48,10 @@ export default function UserComponent() {
   const [widthOptions, setWidthOptions] = useState([]);
   const [colorOptions, setColorOptions] = useState([]);
   const [poNo, setPoNo] = useState('')
+  // const [isOtherCatalog, setIsOtherCatalog] = useState(false);
+  // const [isOtherQuality, setIsOtherQuality] = useState(false);
+  // const [catalogSelected, setCatalogSelected] = useState(false);
+
 
 
 
@@ -71,20 +90,39 @@ export default function UserComponent() {
 
 
   const units = ["Pcs", "Kg", "Ltr", "Mtr", "Nos"];
-  const orderTypeList = ["CUT", "ROLL"];
+  const orderTypeList = ["CUT", "ROLL", "FOLDER"];
 
   const handleItemChange = (index, field, value) => {
-    const updatedItems = [...items];
-    updatedItems[index][field] = value;
+    setItems((prevItems) =>
+      prevItems.map((item, i) => {
+        if (i === index) {
+          const updatedItem = { ...item, [field]: value };
 
-    if (field === "quantity" || field === "rate") {
-      const quantity = updatedItems[index].quantity;
-      const rate = updatedItems[index].rate;
-      updatedItems[index].amount = quantity && rate ? (quantity * rate).toFixed(2) : "";
-    }
+          // Update amount if quantity or rate changes
+          if (field === "quantity" || field === "rate") {
+            const quantity = updatedItem.quantity;
+            const rate = updatedItem.rate;
+            updatedItem.amount = quantity && rate ? (quantity * rate).toFixed(2) : "";
+          }
 
-    setItems(updatedItems);
+          // Update catalog-related flags
+          if (field === "name") {
+            updatedItem.isOtherCatalog = value === "Other";
+            updatedItem.catalogSelected = !(value === "Other" || value === "");
+          }
+
+          // Update quality-related flag
+          if (field === "quality") {
+            updatedItem.isOtherQuality = value === "Other";
+          }
+
+          return updatedItem;
+        }
+        return item;
+      })
+    );
   };
+
 
   const getCookie = (name) => {
     const value = `; ${document.cookie}`;
@@ -94,7 +132,24 @@ export default function UserComponent() {
   };
 
   const handleAddItem = () => {
-    setItems([...items, { name: "", unit: "", quantity: "", quality: "", clrNo: "", width: "", rate: "", amount: "", itemNote: "" }]);
+    setItems((prevItems) => [
+      ...prevItems,
+      {
+        name: "",
+        unit: "",
+        quantity: "",
+        quality: "",
+        clrNo: "",
+        width: "",
+        rate: "",
+        amount: "",
+        itemNote: "",
+        customCatalog: "",
+        customQuality: "",
+        isOtherCatalog: false,
+        catalogSelected: false,
+      },
+    ]);
   };
 
   const handleRemoveItem = (index) => {
@@ -112,18 +167,32 @@ export default function UserComponent() {
   const confirmOrder = async () => {
     try {
       showLoading();
+      const processedItems = items.map((item) => {
+        const processedItem = { ...item };
+        if (item.name === "Other" && item.customCatalog) {
+          processedItem.name = item.customCatalog; // Replace 'name' with the custom catalog name
+          delete processedItem.customCatalog; // Remove the customCatalog field
+        }
+        if (item.quality === "Other" && item.customQuality) {
+          processedItem.quality = item.customQuality; // Replace 'quality' with the custom quality name
+          delete processedItem.customQuality; // Remove the customQuality field
+        }
+        return processedItem;
+      });
       // const response = await fetch("https://order-flow-api.vercel.app/api/update-spreadsheet", {
       // const response = await fetch("/api/update-spreadsheet", {
       // const response = await fetch("https://order-flow-api-ek8r.onrender.com/api/update-spreadsheet", {
       const response = await fetch("http://localhost:8000/api/update-spreadsheet", {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ companyName, poNo, customerName, contactNo, state, city, items, dispatchThrough, deliveryTo, deliveryAddress, orderNote, orderType }),
+        body: JSON.stringify({ companyName, poNo, customerName, contactNo, state, city, items: processedItems, dispatchThrough, deliveryTo, deliveryAddress, orderNote, orderType }),
         credentials: 'include',
       });
 
       if (response.ok) {
         setItems([{ name: "", unit: "", quantity: "", quality: "", clrNo: "", width: "", rate: "", amount: "", itemNote: "" }]);
+        setIsOtherCatalog(false)
+        setIsOtherQuality(false)
         setDispatchThrough("");
         setDeliveryTo("");
         setOrderNote("")
@@ -176,7 +245,7 @@ export default function UserComponent() {
     <div className="flex justify-center items-center min-h-screen bg-gray-100 px-4 pb-14">
       <div className="p-6 w-full max-w-6xl min-h-screen">
         <h1 className="text-4xl font-semibold md:font-bold text-center">
-          JSR Prime Solution
+          Fifth Season Decor
         </h1>
         <h1 className="text-xl md:text-2xl font-semibold text-gray-500 mt-3 text-center md:font-bold">
           Order Flow
@@ -190,6 +259,7 @@ export default function UserComponent() {
                 readOnly
                 value={companyName}
                 className="mt-2 border border-gray-300 rounded-md p-3 bg-gray-100 text-gray-700"
+                required
               />
             </div>
             <div className="flex flex-col">
@@ -207,6 +277,7 @@ export default function UserComponent() {
                 placeholder="Person Name"
                 className="mt-2 border border-gray-300 rounded-md p-2 text-gray-700"
                 onChange={(e) => { setCustomerName(e.target.value) }}
+                required
               />
             </div>
             <div className="flex justify-between items-center">
@@ -240,14 +311,17 @@ export default function UserComponent() {
           <div className="mb-6">
             <h2 className="text-lg font-medium text-gray-800 mb-4">Item Details</h2>
             {items.map((item, index) => (
-              <div key={index} className="grid gap-2 sm:grid-cols-6 sm:items-center bg-gray-200 p-2 rounded-md mb-4">
-                {/* First Line: Catalog Name and Quality Name */}
+              <div
+                key={index}
+                className="grid gap-2 sm:grid-cols-6 sm:items-center bg-gray-200 p-2 rounded-md mb-4"
+              >
+                {/* Catalog Name */}
                 <div className="col-span-6 md:col-span-3">
                   <select
                     value={item.name}
                     onChange={(e) => {
-                      handleItemChange(index, 'name', e.target.value);
-                      fetchQualityOptions(e.target.value, index);
+                      handleItemChange(index, "name", e.target.value);
+                      fetchQualityOptions(e.target.value, index); // Assume this function fetches quality options
                     }}
                     className="border-gray-300 rounded-md p-2 w-full"
                     required
@@ -262,21 +336,74 @@ export default function UserComponent() {
                   </select>
                 </div>
 
+                {/* Custom Catalog Input */}
+                {item.isOtherCatalog && (
+                  <input
+                    type="text"
+                    placeholder="Enter Catalog Name"
+                    value={item.customCatalog || ""}
+                    onChange={(e) => handleItemChange(index, "customCatalog", e.target.value)}
+                    className="border-gray-300 rounded-md p-2 w-full col-span-6 md:col-span-3"
+                  />
+                )}
+
+                {/* Catalog PDF Button */}
+                {item.catalogSelected && qualityOptions[index]?.[0]?.startsWith("http") && (
+                  <div className="col-span-3">
+                    <button
+                      type="button"
+                      className="bg-green-500 px-4 py-2 text-white rounded-xl"
+                    >
+                      <a
+                        href={qualityOptions[index][0]}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        View Catalog Pdf
+                      </a>
+                    </button>
+                  </div>
+                )}
+
+                {/* Quality Name */}
                 <div className="col-span-6 md:col-span-3">
                   <select
                     value={item.quality}
-                    onChange={(e) => handleItemChange(index, 'quality', e.target.value)}
+                    onChange={(e) => {
+                      handleItemChange(index, "quality", e.target.value);
+                      setItems((prevItems) =>
+                        prevItems.map((itm, i) =>
+                          i === index
+                            ? { ...itm, isOtherQuality: e.target.value === "Other" }
+                            : itm
+                        )
+                      );
+                    }}
                     className="border-gray-300 rounded-md p-2 w-full"
                     required
                   >
                     <option value="">Select Quality *</option>
-                    {qualityOptions[index]?.map((quality, i) => (
-                      <option key={i} value={quality}>
-                        {quality}
-                      </option>
-                    ))}
+                    {qualityOptions[index]
+                      ?.slice(qualityOptions[index][0]?.startsWith("http") ? 1 : 0)
+                      .map((quality, i) => (
+                        <option key={i} value={quality}>
+                          {quality}
+                        </option>
+                      ))}
+                    <option value="Other">Not listed here</option>
                   </select>
                 </div>
+
+                {/* Custom Quality Input */}
+                {item.isOtherQuality && (
+                  <input
+                    type="text"
+                    placeholder="Enter Quality Name"
+                    value={item.customQuality || ""}
+                    onChange={(e) => handleItemChange(index, "customQuality", e.target.value)}
+                    className="border-gray-300 rounded-md p-2 w-full col-span-6 md:col-span-3"
+                  />
+                )}
 
                 {/* Second Line: Width, Color No, Unit, Quantity, Rate, Amount, and Delete Button */}
                 <div className="grid grid-cols-2 md:grid-cols-7 gap-2 col-span-6">
@@ -379,7 +506,7 @@ export default function UserComponent() {
 
 
                 {/* Item Note */}
-                <div className="col-span-6">
+                {/* <div className="col-span-6">
                   <textarea
                     name="itemNote"
                     value={item.itemNote}
@@ -387,7 +514,7 @@ export default function UserComponent() {
                     className="w-full h-[40px] p-2 rounded-md"
                     placeholder="Item Note"
                   ></textarea>
-                </div>
+                </div> */}
               </div>
             ))}
 
@@ -405,16 +532,17 @@ export default function UserComponent() {
             <div className="col-span-1">
               <input
                 type="text"
-                placeholder="Name of Transporter"
+                placeholder="Mode of Transporter"
                 value={dispatchThrough}
                 onChange={(e) => setDispatchThrough(e.target.value)}
                 className="border-gray-300 rounded-md p-3 border w-full"
+                required
               />
             </div>
             <div className="col-span-1">
               <input
                 type="text"
-                placeholder="Delivery to"
+                placeholder="Third Party Name"
                 value={deliveryTo}
                 onChange={(e) => setDeliveryTo(e.target.value)}
                 className="border-gray-300 rounded-md p-3 border w-full"
@@ -423,7 +551,7 @@ export default function UserComponent() {
             <div className="col-span-1 sm:col-span-2">
               <input
                 type="text"
-                placeholder="Delivery Address"
+                placeholder="Third Party Address"
                 value={deliveryAddress}
                 onChange={(e) => setDeliveryAddress(e.target.value)}
                 className="border-gray-300 rounded-md p-3 border w-full"
