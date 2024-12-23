@@ -21,7 +21,7 @@ app.options('*', cors()); // Allow all preflight requests
 app.use(bodyParser.json());
 app.use(cookieParser());
 dotenv.config();
-app.use(express.static(path.join(__dirname, '../client/dist')));
+app.use(express.static(path.join(__dirname, './client/dist')));
 
 app.get('/ping',(req,res)=>{
   res.send("OrderFlow Api")
