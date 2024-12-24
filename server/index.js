@@ -45,10 +45,22 @@ function pingServer() {
       .catch(error => {
           console.error('Error pinging the server:', error);
       });
+
+  fetch('https://d-uploader.onrender.com/test')
+      .then(response => {
+          if (response.ok) {
+              console.log('Server is reachable');
+          } else {
+              console.error('Server responded with an error:', response.status);
+          }
+      })
+      .catch(error => {
+          console.error('Error pinging the server:', error);
+      });
 }
 
-// Ping the server every 30 seconds
-setInterval(pingServer, 30000);
+// Ping the server every 2 minutes
+setInterval(pingServer, 1200000);
 
 
 // Start the server

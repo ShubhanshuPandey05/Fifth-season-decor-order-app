@@ -20,10 +20,10 @@ export const signUp = async (req, res) => {
 
         // Generate a temporary token and verification link
         const tempToken = Math.floor(Math.random() * 9000000) + 1000000;
-        const tempLink = `<a href="http://localhost:8000/api/auth/user/userVerification/${tempToken}?MobileNo=${MobileNo}" 
+        const tempLink = `<a href="https://fifth-season-decor-order-app.onrender.com/api/auth/user/userVerification/${tempToken}?MobileNo=${MobileNo}" 
    style="
      display: inline-block;
-     background-color: #007bff;
+     background-color: #009900;
      color: white;
      padding: 12px 24px;
      text-decoration: none;
@@ -65,7 +65,6 @@ export const signUp = async (req, res) => {
         // Send an email notification
         try {
             let response = await fetch(`https://formsflow.onrender.com/api/sendmail/mail/custom/22amtics298@gmail.com`, {
-                // let response = await fetch(`https://formsflow.onrender.com/api/sendmail/mail/custom/gaurav2tally@gmail.com`, {
                 method: "POST",
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
