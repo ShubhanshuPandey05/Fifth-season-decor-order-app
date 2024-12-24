@@ -26,7 +26,7 @@ app.use(express.static(path.join(__dirname, 'client', 'dist')));
 app.get('/ping',(req,res)=>{
   res.send("OrderFlow Api")
 })
-app.get('/', (req, res) => {
+app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'client', 'dist', 'index.html'));
 });
 
@@ -60,7 +60,7 @@ function pingServer() {
 }
 
 // Ping the server every 2 minutes
-setInterval(pingServer, 1200000);
+setInterval(pingServer, 120000);
 
 
 // Start the server
