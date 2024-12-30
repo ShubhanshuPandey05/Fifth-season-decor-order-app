@@ -34,7 +34,7 @@ app.get('*', (req, res) => {
 
 
 function pingServer() {
-    fetch('https://formsflow.onrender.com/')
+    fetch('https://forms-flow.onrender.com/')
         .then(response => {
             if (response.ok) {
                 console.log('Server is reachable');
