@@ -20,7 +20,7 @@ export const signUp = async (req, res) => {
 
         // Generate a temporary token and verification link
         const tempToken = Math.floor(Math.random() * 9000000) + 1000000;
-        const tempLink = `<a href="https://fifth-season-decor-order-app.onrender.com/api/auth/user/userVerification/${tempToken}?MobileNo=${MobileNo}" 
+        const tempLink = `<a href="https://fifth-season-decor-order-app-4s37.onrender.com/api/auth/user/userVerification/${tempToken}?MobileNo=${MobileNo}" 
    style="
      display: inline-block;
      background-color: #009900;
