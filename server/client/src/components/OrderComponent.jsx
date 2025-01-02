@@ -456,9 +456,10 @@ export default function UserComponent() {
                       onChange={(e) => handleItemChange(index, 'unit', e.target.value)}
                       className="border-gray-300 rounded-md p-2 w-full"
                     >
+                      <option value="">Unit</option>
                       <option value="Mtrs">Mtrs</option>
-                      {orderType=="ROLL"??<option value="ROLL">Roll</option>}
-                      {orderType=="FOLDER"??<option value="FOLDER">Folder</option>}
+                      {orderType=="ROLL"?<option value="ROLL">Roll</option>:""}
+                      {orderType=="FOLDER"?<option value="FOLDER">Folder</option>:""}
                       {/* {units.map((unit) => (
                         <option key={unit} value={unit}>
                           {unit}
@@ -488,13 +489,13 @@ export default function UserComponent() {
 
                   {/* Amount and Delete Button - Grouped in One Row for Mobile */}
                   <div className="col-span-2 md:col-span-2 flex gap-2 items-center">
-                    <input
+                    {/* <input
                       type="text"
                       readOnly
                       placeholder="Amount"
                       value={item.amount}
                       className="border-gray-300 bg-gray-100 rounded-md p-2 w-full"
-                    />
+                    /> */}
 
                     <button
                       type="button"
