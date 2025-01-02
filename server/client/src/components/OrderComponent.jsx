@@ -89,7 +89,7 @@ export default function UserComponent() {
   }, []);
 
 
-  const units = ["Pcs", "Kg", "Ltr", "Mtr", "Nos"];
+  const units = ["Mtr",orderType=="ROLL"??"ROLL"];
   const orderTypeList = ["CUT", "ROLL", "FOLDER"];
 
   const handleItemChange = (index, field, value) => {
@@ -421,7 +421,7 @@ export default function UserComponent() {
                 {/* Second Line: Width, Color No, Unit, Quantity, Rate, Amount, and Delete Button */}
                 <div className="grid grid-cols-2 md:grid-cols-7 gap-2 col-span-6">
                   {/* Width and Color - Grouped in One Row for Mobile */}
-                  <div className="col-span-2 md:col-span-2 flex gap-2">
+                 {/*<div className="col-span-2 md:col-span-2 flex gap-2">
                     <select
                       value={item.width}
                       onChange={(e) => handleItemChange(index, 'width', e.target.value)}
@@ -447,7 +447,7 @@ export default function UserComponent() {
                         </option>
                       ))}
                     </select>
-                  </div>
+                  </div> */}
 
                   {/* Unit, Quantity, and Rate - Grouped in One Row for Mobile */}
                   <div className="col-span-2 md:col-span-3 flex gap-2">
@@ -474,14 +474,14 @@ export default function UserComponent() {
                       required
                     />
 
-                    <input
+                    {/* <input
                       type="number"
                       placeholder="Rate"
                       value={item.rate}
                       onChange={(e) => handleItemChange(index, 'rate', e.target.value)}
                       className="border-gray-300 rounded-md p-2 w-full"
                       min={1}
-                    />
+                    /> */}
                   </div>
 
                   {/* Amount and Delete Button - Grouped in One Row for Mobile */}
