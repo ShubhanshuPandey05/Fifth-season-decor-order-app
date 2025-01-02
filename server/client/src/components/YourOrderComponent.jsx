@@ -95,6 +95,10 @@ const YourOrder = () => {
 
             </div>
 
+            <div className="text-left">
+              <h4 className="italic text-sm mb-2 mt-2">Order Id : {order[3]}</h4>
+            </div>
+
             <div className="flex justify-between items-center mb-2">
               <h3 className="text-xl font-bold text-blue-800">{order[10]}</h3>
               <div className="col-span-[0.5]">{order[4]}</div>

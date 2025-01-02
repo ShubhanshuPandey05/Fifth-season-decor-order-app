@@ -89,7 +89,7 @@ export default function UserComponent() {
   }, []);
 
 
-  const units = ["Mtr",orderType=="ROLL"??"ROLL"];
+  // const units = ["Mtr",orderType=="ROLL"??"ROLL"];
   const orderTypeList = ["CUT", "ROLL", "FOLDER"];
 
   const handleItemChange = (index, field, value) => {
@@ -456,12 +456,14 @@ export default function UserComponent() {
                       onChange={(e) => handleItemChange(index, 'unit', e.target.value)}
                       className="border-gray-300 rounded-md p-2 w-full"
                     >
-                      <option value="">Unit</option>
-                      {units.map((unit) => (
+                      <option value="Mtrs">Mtrs</option>
+                      {orderType=="ROLL"??<option value="ROLL">Roll</option>}
+                      {orderType=="FOLDER"??<option value="FOLDER">Folder</option>}
+                      {/* {units.map((unit) => (
                         <option key={unit} value={unit}>
                           {unit}
                         </option>
-                      ))}
+                      ))} */}
                     </select>
 
                     <input
