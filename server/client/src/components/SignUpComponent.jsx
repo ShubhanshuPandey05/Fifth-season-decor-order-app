@@ -8,6 +8,12 @@ export default function SignUpComponent() {
         Companyname: '',
         GST_No: '',
         PAN_No: '',
+        OwnerName: '',
+        OwnerNo: '',
+        AccountantName: '',
+        AccountantNo: '',
+        PurchaserName: '',
+        PurchaserNo: '',
         MobileNo: '',
         State: '',
         City: '',
@@ -22,7 +28,7 @@ export default function SignUpComponent() {
     return (
         <div className="flex justify-center items-center min-h-screen md:bg-gray-100">
             <form onSubmit={handleSignUp} className="max-w-md mx-auto my-10 p-8 bg-white rounded-lg md:shadow-md">
-                <h2 className="text-3xl font-bold mb-8 text-center">Register</h2>
+                <h2 className="text-3xl font-bold mb-8 text-center">Registeration</h2>
 
                 <input
                     type="text"
@@ -52,6 +58,65 @@ export default function SignUpComponent() {
                     value={data.PAN_No}
                     onChange={(e) => setData({ ...data, PAN_No: e.target.value })}
                     maxLength={10}
+                />
+
+                <input
+                    type="text"
+                    name="OwnerName"
+                    className="h-12 p-4 mb-4 w-full border rounded-lg"
+                    placeholder="Owner Name*"
+                    value={data.OwnerName}
+                    onChange={(e) => setData({ ...data, OwnerName: e.target.value })}
+                    required
+                />
+                <input
+                    type="text"
+                    name="OwnerMobileNo"
+                    className="h-12 p-4 mb-4 w-full border rounded-lg"
+                    placeholder="Owner Mobile No*"
+                    value={data.OwnerNo}
+                    onChange={(e) => setData({ ...data, OwnerNo: e.target.value })}
+                    maxLength={10}
+                    required
+                />
+                <input
+                    type="text"
+                    name="AccountantName"
+                    className="h-12 p-4 mb-4 w-full border rounded-lg"
+                    placeholder="Accountant Name*"
+                    value={data.AccountantName}
+                    onChange={(e) => setData({ ...data, AccountantName: e.target.value })}
+                    required
+                />
+                <input
+                    type="text"
+                    name="AccountantMobileNo"
+                    className="h-12 p-4 mb-4 w-full border rounded-lg"
+                    placeholder="AccountantMobile No*"
+                    value={data.AccountantNo}
+                    onChange={(e) => setData({ ...data, AccountantNo: e.target.value })}
+                    maxLength={10}
+                    required
+                />
+                <input
+                    type="text"
+                    name="PurchaserName"
+                    className="h-12 p-4 mb-4 w-full border rounded-lg"
+                    placeholder="Purchaser Name*"
+                    value={data.PurchaserName}
+                    onChange={(e) => setData({ ...data, PurchaserName: e.target.value })}
+                    required
+                />
+
+                <input
+                    type="text"
+                    name="PurchaserMobileNo"
+                    className="h-12 p-4 mb-4 w-full border rounded-lg"
+                    placeholder="Purchaser Mobile No*"
+                    value={data.PurchaserNo}
+                    onChange={(e) => setData({ ...data, PurchaserNo: e.target.value })}
+                    maxLength={10}
+                    required
                 />
 
                 <input

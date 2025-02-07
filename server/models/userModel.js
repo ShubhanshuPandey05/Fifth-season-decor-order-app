@@ -28,6 +28,30 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    AccountantName:{
+        type:String,
+        required:true
+    },
+    AccountantNo:{
+        type:String,
+        required:true
+    },
+    OwnerName:{
+        type:String,
+        required:true
+    },
+    OwnerNo:{
+        type:String,
+        required:true
+    },
+    PurchaserName:{
+        type:String,
+        required:true
+    },
+    PurchaserNo:{
+        type:String,
+        required:true
+    },
     City:{
         type:String,
         required:true

@@ -11,7 +11,7 @@ const useSignUp = () => {
 
     const signUp = async (data) => {
 
-        const success = handleErrorInputs(data.Companyname, data.State, data.City, data.Password, data.MobileNo, data.GST_No, data.PAN_No);
+        const success = handleErrorInputs(data.Companyname, data.State, data.City, data.Password, data.MobileNo, data.GST_No, data.PAN_No, data.OwnerName, data.OwnerNo, data.AccountantName, data.AccountantNo, data.PurchaserName, data.PurchaserNo);
 
         if (!success) return; 
         showLoading();
@@ -45,8 +45,8 @@ const useSignUp = () => {
 }
 
 
-function handleErrorInputs(Companyname, State, City, password, MobileNo, GST_No, PAN_No) {
-    if (!Companyname || !State || !password || !MobileNo || !City) {
+function handleErrorInputs(Companyname, State, City, password, MobileNo, GST_No, PAN_No, OwnerName, OwnerNo, AccountantName, AccountantNo, PurchaserName, PurchaserNo) {
+    if (!Companyname || !State || !password || !MobileNo || !City || !OwnerName || !OwnerNo || !AccountantName || !AccountantNo || !PurchaserName || !PurchaserNo) {
         toast.error('Please fill all the required fields');
         return false;
     }else if (password.length < 6) {

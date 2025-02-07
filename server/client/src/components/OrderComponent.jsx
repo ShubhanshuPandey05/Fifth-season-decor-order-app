@@ -9,13 +9,25 @@ export default function UserComponent() {
     contactNo: "",
     companyName: "",
     state: "",
-    city: ""
+    city: "",
+    OwnerName: "",
+    OwnerNo: "",
+    AccountantName: "",
+    AccountantNo: "",
+    PurchaserName: "",
+    PurchaserNo: ""
   };
 
   const [customerName, setCustomerName] = useState("");
   const [orderType, setOrderType] = useState("");
   const [contactNo] = useState(authUser.MobileNo || "");
   const [companyName] = useState(authUser.Companyname || "");
+  const [ownerName] = useState(authUser.OwnerName || "");
+  const [purchaserName] = useState(authUser.PurchaserName || "");
+  const [accountantName] = useState(authUser.AccountantName || "");
+  const [ownerNo] = useState(authUser.OwnerNo || "");
+  const [purchaserNo] = useState(authUser.PurchaserNo || "");
+  const [accountantNo] = useState(authUser.AccountantNo || "");
   const [state] = useState(authUser.State)
   const [city] = useState(authUser.City)
   const [items, setItems] = useState([
@@ -185,7 +197,7 @@ export default function UserComponent() {
         // const response = await fetch("http://localhost:8000/api/update-spreadsheet", {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ companyName, poNo, customerName, contactNo, state, city, items: processedItems, dispatchThrough, deliveryTo, deliveryAddress, orderNote, orderType }),
+        body: JSON.stringify({ companyName, poNo, ownerName, ownerNo, accountantName, accountantNo, purchaserName, purchaserNo, customerName, contactNo, state, city, items: processedItems, dispatchThrough, deliveryTo, deliveryAddress, orderNote, orderType }),
         credentials: 'include',
       });
 
@@ -255,32 +267,78 @@ export default function UserComponent() {
 
 
   return (
-    <div className="flex justify-center items-center min-h-screen bg-gray-100 px-4 pb-14">
+    <div className="flex justify-center items-center min-h-screen bg-white pb-14">
       <div className="p-6 w-full max-w-6xl min-h-screen">
-        <h1 className="text-4xl font-semibold md:font-bold text-center">
-          Fifth Season Decor
-        </h1>
-        <h1 className="text-xl md:text-2xl font-semibold text-gray-500 mt-3 text-center md:font-bold">
-          Order Flow
-        </h1>
-        <form onSubmit={handleSubmit}>
+        <img src="Logo.png" alt="" className="h-[8rem] m-auto" />
+        <form onSubmit={handleSubmit} className="bg-gray-100 pt-8 pb-7 px-5 w-full md:w-[75vw] mt-5 rounded-lg">
           {/* Customer Info */}
           <div className="flex flex-col gap-4">
-            <div className="flex flex-col">
+            <div className="hidden">
               <input
                 type="hidden"
                 readOnly
                 value={companyName}
-                className="mt-2 border border-gray-300 rounded-md p-3 bg-gray-100 text-gray-700"
+                className="border border-gray-300 rounded-md bg-gray-100 text-gray-700"
                 required
               />
             </div>
-            <div className="flex flex-col">
+            <div className="hidden">
               <input
                 type="hidden"
                 readOnly
                 value={"+91 " + contactNo}
-                className="mt-2 border border-gray-300 rounded-md p-3 bg-gray-100 text-gray-700"
+                className="border border-gray-300 rounded-md bg-gray-100 text-gray-700"
+              />
+            </div>
+            <div className="hidden">
+              <input
+                type="hidden"
+                readOnly
+                value={ownerName}
+                className="border border-gray-300 rounded-md bg-gray-100 text-gray-700"
+                required
+              />
+            </div>
+            <div className="hidden">
+              <input
+                type="hidden"
+                readOnly
+                value={"+91 " + ownerNo}
+                className="border border-gray-300 rounded-md bg-gray-100 text-gray-700"
+              />
+            </div>
+            <div className="hidden">
+              <input
+                type="hidden"
+                readOnly
+                value={accountantName}
+                className="border border-gray-300 rounded-md bg-gray-100 text-gray-700"
+                required
+              />
+            </div>
+            <div className="hidden">
+              <input
+                type="hidden"
+                readOnly
+                value={"+91 " + accountantNo}
+                className="border border-gray-300 rounded-md bg-gray-100 text-gray-700"
+              />
+            </div>
+            <div className="hidden">
+              <input
+                type="hidden"
+                readOnly
+                value={purchaserName}
+                className="border border-gray-300 rounded-md bg-gray-100 text-gray-700"
+                required
+              />
+            </div>
+            <div className="hidden">
+              <input
+                type="hidden"
+                readOnly
+                value={"+91 " + purchaserNo}
+                className="border border-gray-300 rounded-md bg-gray-100 text-gray-700"
               />
             </div>
             <div className="flex flex-col">
@@ -288,26 +346,30 @@ export default function UserComponent() {
                 type="text"
                 value={customerName}
                 placeholder="Person Name"
-                className="mt-2 border border-gray-300 rounded-md p-2 text-gray-700"
+                className="border border-gray-300 rounded-md p-2 text-gray-700"
                 onChange={(e) => { setCustomerName(e.target.value) }}
                 required
               />
             </div>
-            <div className="flex justify-between items-center">
-              <select
-                value={orderType}
-                onChange={(e) => setOrderType(e.target.value)}
-                className="border-gray-300 rounded-md p-2 w-[38%]"
-                required
-              >
-                <option value="">Order Type</option>
+            <div className="md:flex justify-between items-center">
+              <div className="border-gray-300 flex rounded-md p-2 space-x-2 md:space-x-6 w-full">
+                <p className="font-semibold">Order Type :</p>
                 {orderTypeList.map((unit, index) => (
-                  <option key={index} value={unit}>
-                    {unit}
-                  </option>
+                  <label key={index} className="flex items-center space-x-1 md:space-x-4  my-1">
+                    <input
+                      type="radio"
+                      name="orderType"
+                      value={unit}
+                      checked={orderType === unit}
+                      onChange={(e) => setOrderType(e.target.value)}
+                      className="h-4 w-4 md:h-5 md:w-5"
+                    />
+                    <span className="text-sm md:text-base">{unit}</span>
+                  </label>
                 ))}
-              </select>
-              <div className="flex flex-col w-[60%]">
+              </div>
+
+              <div className="flex flex-col w-full">
                 <input
                   type="text"
                   value={poNo}
@@ -421,7 +483,7 @@ export default function UserComponent() {
                 {/* Second Line: Width, Color No, Unit, Quantity, Rate, Amount, and Delete Button */}
                 <div className="grid grid-cols-2 md:grid-cols-7 gap-2 col-span-6">
                   {/* Width and Color - Grouped in One Row for Mobile */}
-                 {/*<div className="col-span-2 md:col-span-2 flex gap-2">
+                  {/*<div className="col-span-2 md:col-span-2 flex gap-2">
                     <select
                       value={item.width}
                       onChange={(e) => handleItemChange(index, 'width', e.target.value)}
@@ -456,10 +518,10 @@ export default function UserComponent() {
                       onChange={(e) => handleItemChange(index, 'unit', e.target.value)}
                       className="border-gray-300 rounded-md p-2 w-full"
                     >
-                      <option value="">Unit</option>
+                     { orderType == "ROLL" ? <option value="ROLL">Roll</option> : orderType == "FOLDER" ? <option value="FOLDER">Folder</option> : orderType == "CUT"? "" : <option value="">Unit</option>}
                       <option value="Mtrs">Mtrs</option>
-                      {orderType=="ROLL"?<option value="ROLL">Roll</option>:""}
-                      {orderType=="FOLDER"?<option value="FOLDER">Folder</option>:""}
+                      {/* {orderType == "ROLL" ? <option value="ROLL">Roll</option> : ""}
+                      {orderType == "FOLDER" ? <option value="FOLDER">Folder</option> : ""} */}
                       {/* {units.map((unit) => (
                         <option key={unit} value={unit}>
                           {unit}

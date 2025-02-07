@@ -116,7 +116,13 @@ export const updateOrder = async (req, res) => {
       orderType, // CUT or ROLL
       deliveryTo,
       deliveryAddress,
-      poNo
+      poNo,
+      ownerName,
+      ownerNo,
+      accountantName, 
+      accountantNo, 
+      purchaserName, 
+      purchaserNo,
     } = req.body;
 
     // const deliveryDate = new Date();
@@ -153,7 +159,7 @@ export const updateOrder = async (req, res) => {
 
     // console.log(existingRows,"hii");
     // console.log(existingRows[existingRows.length - 1]);
-    
+
 
     // console.log(lastSRNo);
 
@@ -185,6 +191,18 @@ export const updateOrder = async (req, res) => {
         deliveryAddress,
         orderNote,// Order Note
         "Pending", // Order Status
+        "",
+        "",
+        "",
+        "",
+        "",
+        "",
+        ownerName,
+        ownerNo,
+        accountantName,
+        accountantNo,
+        purchaserName,
+        purchaserNo,
       ];
     });
 

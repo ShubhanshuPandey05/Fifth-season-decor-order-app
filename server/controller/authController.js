@@ -5,7 +5,7 @@ import fetch from 'node-fetch';
 
 export const signUp = async (req, res) => {
     try {
-        const { Companyname, State, City, Password, MobileNo, GST_No, PAN_No } = req.body;
+        const { Companyname, State, City, Password, MobileNo, GST_No, PAN_No, OwnerName, OwnerNo, AccountantName, AccountantNo, PurchaserName, PurchaserNo } = req.body;
 
         // Check if the user already exists
         let user = await User.findOne({ MobileNo });
@@ -48,6 +48,12 @@ export const signUp = async (req, res) => {
             City,
             GST_No,
             PAN_No,
+            OwnerName,
+            OwnerNo,
+            AccountantName,
+            AccountantNo,
+            PurchaserName,
+            PurchaserNo,
             Temp_Token: tempToken,
             Authorized: false
         });
@@ -60,10 +66,17 @@ export const signUp = async (req, res) => {
             City,
             GST_No,
             PAN_No,
+            OwnerName,
+            OwnerNo,
+            AccountantName,
+            AccountantNo,
+            PurchaserName,
+            PurchaserNo,
         };
 
         // Send an email notification
         try {
+            // let response = await fetch(`https://forms-flow.onrender.com/api/sendmail/mail/custom/22amtics298@gmail.com`, {
             let response = await fetch(`https://forms-flow.onrender.com/api/sendmail/mail/custom/deorah_76@yahoo.com`, {
                 method: "POST",
                 headers: { 'Content-Type': 'application/json' },
@@ -136,6 +149,12 @@ export const login = async (req, res) => {
                             State: user.State,
                             City: user.City,
                             MobileNo: user.MobileNo,
+                            OwnerName: user.OwnerName,
+                            OwnerNo: user.OwnerNo,
+                            AccountantName: user.AccountantName,
+                            AccountantNo: user.AccountantNo,
+                            PurchaserName: user.PurchaserName,
+                            PurchaserNo: user.PurchaserNo
                         }, jwt: token
                     })
                 } else {
