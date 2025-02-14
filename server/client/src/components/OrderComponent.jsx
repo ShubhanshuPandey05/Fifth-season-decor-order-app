@@ -388,7 +388,7 @@ export default function UserComponent() {
             {items.map((item, index) => (
               <div
                 key={index}
-                className="grid gap-2 sm:grid-cols-6 sm:items-center bg-gray-200 p-2 rounded-xl mb-4"
+                className="grid gap-2 sm:grid-cols-6 sm:items-center bg-[#B2A5FF] p-2 rounded-xl mb-4"
               >
                 {/* Catalog Name */}
                 <div className="col-span-6 md:col-span-3">
