@@ -346,7 +346,7 @@ export default function UserComponent() {
                 type="text"
                 value={customerName}
                 placeholder="Person Name"
-                className="border border-gray-300 rounded-2xl p-2 text-gray-700"
+                className="border border-gray-300 rounded-xl p-2 text-gray-700"
                 onChange={(e) => { setCustomerName(e.target.value) }}
                 required
               />
@@ -374,7 +374,7 @@ export default function UserComponent() {
                   type="text"
                   value={poNo}
                   placeholder="Ref/PO. No."
-                  className="mt-2 border border-gray-300 rounded-md p-2 text-gray-700 mb-2"
+                  className="mt-2 border border-gray-300 rounded-xl p-2 text-gray-700 mb-2"
                   onChange={(e) => { setPoNo(e.target.value) }}
                 />
               </div>
@@ -388,7 +388,7 @@ export default function UserComponent() {
             {items.map((item, index) => (
               <div
                 key={index}
-                className="grid gap-2 sm:grid-cols-6 sm:items-center bg-gray-200 p-2 rounded-md mb-4"
+                className="grid gap-2 sm:grid-cols-6 sm:items-center bg-gray-200 p-2 rounded-xl mb-4"
               >
                 {/* Catalog Name */}
                 <div className="col-span-6 md:col-span-3">
@@ -398,7 +398,7 @@ export default function UserComponent() {
                       handleItemChange(index, "name", e.target.value);
                       fetchQualityOptions(e.target.value, index); // Assume this function fetches quality options
                     }}
-                    className="border-gray-300 rounded-md p-2 w-full"
+                    className="border-gray-300 rounded-xl p-2 w-full"
                     required
                   >
                     <option value="">Select Catalog *</option>
@@ -418,7 +418,7 @@ export default function UserComponent() {
                     placeholder="Enter Catalog Name"
                     value={item.customCatalog || ""}
                     onChange={(e) => handleItemChange(index, "customCatalog", e.target.value)}
-                    className="border-gray-300 rounded-md p-2 w-full col-span-6 md:col-span-3"
+                    className="border-gray-300 rounded-xl p-2 w-full col-span-6 md:col-span-3"
                   />
                 )}
 
@@ -454,7 +454,7 @@ export default function UserComponent() {
                         )
                       );
                     }}
-                    className="border-gray-300 rounded-md p-2 w-full"
+                    className="border-gray-300 rounded-xl p-2 w-full"
                     required
                   >
                     <option value="">Select Quality *</option>
@@ -476,7 +476,7 @@ export default function UserComponent() {
                     placeholder="Enter Quality Name"
                     value={item.customQuality || ""}
                     onChange={(e) => handleItemChange(index, "customQuality", e.target.value)}
-                    className="border-gray-300 rounded-md p-2 w-full col-span-6 md:col-span-3"
+                    className="border-gray-300 rounded-xl p-2 w-full col-span-6 md:col-span-3"
                   />
                 )}
 
@@ -516,7 +516,7 @@ export default function UserComponent() {
                     <select
                       value={item.unit}
                       onChange={(e) => handleItemChange(index, 'unit', e.target.value)}
-                      className="border-gray-300 rounded-md p-2 w-full"
+                      className="border-gray-300 rounded-xl p-2 w-full"
                     >
                       {orderType == "ROLL" ? <option value="ROLL">Roll</option> : orderType == "FOLDER" ? <option value="FOLDER">Folder</option> : orderType == "CUT" ? "" : <option value="">Unit</option>}
                       <option value="Mtrs">Mtrs</option>
@@ -534,7 +534,7 @@ export default function UserComponent() {
                       placeholder="Qty *"
                       value={item.quantity}
                       onChange={(e) => handleItemChange(index, 'quantity', e.target.value)}
-                      className="border-gray-300 rounded-md p-2 w-full"
+                      className="border-gray-300 rounded-xl p-2 w-full"
                       min={1}
                       required
                     />
@@ -613,7 +613,7 @@ export default function UserComponent() {
                 placeholder="Mode of Transporter"
                 value={dispatchThrough}
                 onChange={(e) => setDispatchThrough(e.target.value)}
-                className="border-gray-300 rounded-md p-3 border w-full"
+                className="border-gray-300 rounded-xl p-3 border w-full"
                 required
               />
             </div>
@@ -623,7 +623,7 @@ export default function UserComponent() {
                 placeholder="Third Party Name"
                 value={deliveryTo}
                 onChange={(e) => setDeliveryTo(e.target.value)}
-                className="border-gray-300 rounded-md p-3 border w-full"
+                className="border-gray-300 rounded-xl p-3 border w-full"
               />
             </div>
             <div className="col-span-1 sm:col-span-2">
@@ -632,7 +632,7 @@ export default function UserComponent() {
                 placeholder="Third Party Address"
                 value={deliveryAddress}
                 onChange={(e) => setDeliveryAddress(e.target.value)}
-                className="border-gray-300 rounded-md p-3 border w-full"
+                className="border-gray-300 rounded-xl p-3 border w-full"
               />
             </div>
             <div className="col-span-1 sm:col-span-2">
@@ -641,7 +641,7 @@ export default function UserComponent() {
                 id="itemNote"
                 value={orderNote}
                 onChange={(e) => setOrderNote(e.target.value)}
-                className="w-full h-[40px] p-2 rounded-md"
+                className="w-full h-[40px] p-2 rounded-xl"
                 placeholder="Remark"
               ></textarea>
             </div>
