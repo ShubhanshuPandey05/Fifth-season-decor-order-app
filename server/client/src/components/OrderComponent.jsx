@@ -599,7 +599,7 @@ export default function UserComponent() {
             <button
               type="button"
               onClick={handleAddItem}
-              className="bg-[#BDBDDB] text-white px-4 py-2 rounded-lg hover:bg-[#A8A8C7]"
+              className="bg-[#4c41e1] text-white px-4 py-2 rounded-lg hover:bg-[#5e41e1]"
             >
               + Add Item
             </button>
@@ -652,7 +652,7 @@ export default function UserComponent() {
           <div className="text-center">
             <button
               type="submit"
-              className="px-6 py-3 bg-[#A8A8C7] text-white rounded-lg hover:bg-[#9494B4]"
+              className="px-6 py-3 bg-[#5D3FD3] text-white rounded-lg hover:bg-[#5b3cd8]"
             >
               Submit Order
             </button>
