@@ -270,7 +270,7 @@ export default function UserComponent() {
     <div className="flex flex-col justify-center items-center min-h-screen bg-white pb-14">
       <img src="icon1.jpg" alt="" className="h-[10rem] m-auto w-[100vw] md:hidden" />
       <div className="p-6 w-full max-w-6xl min-h-screen">
-        <form onSubmit={handleSubmit} className="bg-[#d3f0f4] pt-8 pb-7 px-5 w-full md:w-[75vw] mt-5 rounded-lg">
+        <form onSubmit={handleSubmit} className="bg-[#e6e6fa] pt-8 pb-7 px-5 w-full md:w-[75vw] mt-5 rounded-lg">
           {/* Customer Info */}
           <div className="flex flex-col gap-4">
             <div className="hidden">
@@ -346,7 +346,7 @@ export default function UserComponent() {
                 type="text"
                 value={customerName}
                 placeholder="Person Name"
-                className="border border-gray-300 rounded-md p-2 text-gray-700"
+                className="border border-gray-300 rounded-xl p-2 text-gray-700"
                 onChange={(e) => { setCustomerName(e.target.value) }}
                 required
               />
