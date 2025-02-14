@@ -267,7 +267,7 @@ export default function UserComponent() {
 
 
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen bg-[#F2F2FD] pb-14">
+    <div className="flex flex-col justify-center items-center min-h-screen bg-[#e6e6fa] pb-14">
       <img src="icon1.jpg" alt="" className="h-[10rem] m-auto w-[100vw] md:hidden" />
       <div className="p-6 w-full max-w-6xl min-h-screen">
         <form onSubmit={handleSubmit} className="bg-[#e6e6fa] pt-8 pb-7 px-5 w-full md:w-[75vw] mt-5 rounded-lg">
