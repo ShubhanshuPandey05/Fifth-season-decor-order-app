@@ -346,7 +346,7 @@ export default function UserComponent() {
                 type="text"
                 value={customerName}
                 placeholder="Person Name"
-                className="border border-gray-300 rounded-xl p-2 text-gray-700"
+                className="border border-gray-300 rounded-2xl p-2 text-gray-700"
                 onChange={(e) => { setCustomerName(e.target.value) }}
                 required
               />
