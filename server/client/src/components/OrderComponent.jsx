@@ -268,8 +268,8 @@ export default function UserComponent() {
 
   return (
     <div className="flex justify-center items-center min-h-screen bg-white pb-14">
+      <img src="icon.jpg" alt="" className="h-[10rem] m-auto w-[100vw] md:hidden" />
       <div className="p-6 w-full max-w-6xl min-h-screen">
-        <img src="icon.jpg" alt="" className="h-[8rem] m-auto w-[100vw] md:hidden" />
         <form onSubmit={handleSubmit} className="bg-gray-100 pt-8 pb-7 px-5 w-full md:w-[75vw] mt-5 rounded-lg">
           {/* Customer Info */}
           <div className="flex flex-col gap-4">
@@ -518,7 +518,7 @@ export default function UserComponent() {
                       onChange={(e) => handleItemChange(index, 'unit', e.target.value)}
                       className="border-gray-300 rounded-md p-2 w-full"
                     >
-                     { orderType == "ROLL" ? <option value="ROLL">Roll</option> : orderType == "FOLDER" ? <option value="FOLDER">Folder</option> : orderType == "CUT"? "" : <option value="">Unit</option>}
+                      {orderType == "ROLL" ? <option value="ROLL">Roll</option> : orderType == "FOLDER" ? <option value="FOLDER">Folder</option> : orderType == "CUT" ? "" : <option value="">Unit</option>}
                       <option value="Mtrs">Mtrs</option>
                       {/* {orderType == "ROLL" ? <option value="ROLL">Roll</option> : ""}
                       {orderType == "FOLDER" ? <option value="FOLDER">Folder</option> : ""} */}
