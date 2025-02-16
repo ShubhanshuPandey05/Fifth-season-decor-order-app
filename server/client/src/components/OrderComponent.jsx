@@ -267,10 +267,10 @@ export default function UserComponent() {
 
 
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen bg-[#e6e6fa] pb-14">
+    <div className="flex flex-col justify-center items-center min-h-screen bg-[#565656] pb-14">
       <img src="icon1.jpg" alt="" className="h-[10rem] m-auto w-[100vw] md:hidden" />
       <div className="p-6 w-full max-w-6xl min-h-screen">
-        <form onSubmit={handleSubmit} className="bg-[#e6e6fa] pt-2 pb-7 px-5 w-full md:w-[75vw] mt-2 rounded-lg">
+        <form onSubmit={handleSubmit} className="bg-[#565656] pt-2 pb-7 px-5 w-full md:w-[75vw] mt-2 rounded-lg">
           {/* Customer Info */}
           <div className="flex flex-col gap-4">
             <div className="hidden">
@@ -363,6 +363,7 @@ export default function UserComponent() {
                       checked={orderType === unit}
                       onChange={(e) => setOrderType(e.target.value)}
                       className="h-4 w-4 md:h-5 md:w-5"
+                      required
                     />
                     <span className="text-sm md:text-base">{unit}</span>
                   </label>
@@ -388,7 +389,7 @@ export default function UserComponent() {
             {items.map((item, index) => (
               <div
                 key={index}
-                className="grid gap-2 sm:grid-cols-6 sm:items-center bg-[#c3b9f7] p-2 rounded-xl mb-4"
+                className="grid gap-2 sm:grid-cols-6 sm:items-center bg-[#828385] p-2 rounded-xl mb-4"
               >
                 {/* Catalog Name */}
                 <div className="col-span-6 md:col-span-3">

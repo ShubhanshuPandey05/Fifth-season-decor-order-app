@@ -110,7 +110,7 @@ export const getFilteredRows = async (req, res) => {
 
 
     // Combine both arrays
-    const resultantRow = [...filteredRows, ...filteredRows2, ...filteredRows3];
+    const resultantRow = [...filteredRows.reverse(), ...filteredRows2.reverse(), ...filteredRows3.reverse()];
     // console.log(resultantRow);
 
     res.json({ data: resultantRow });
