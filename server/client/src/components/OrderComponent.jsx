@@ -267,7 +267,8 @@ export default function UserComponent() {
 
 
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen pb-14 bg-custom-pattern bg-center bg-no-repeat bg-cover">
+    <div className="flex flex-col justify-center items-center min-h-screen pb-14 bg-custom-pattern bg-center bg-no-repeat bg-cover" style={{ backgroundImage: "url('/bg-image.jpg')" }}
+    >
       <img src="icon1.jpg" alt="" className="h-[10rem] m-auto w-[100vw] md:hidden" />
       <div className="p-6 w-full max-w-6xl min-h-screen">
         <form onSubmit={handleSubmit} className="glassmorphism pt-2 pb-7 px-5 w-full md:w-[75vw] mt-2 rounded-lg">
