@@ -267,10 +267,10 @@ export default function UserComponent() {
 
 
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen bg-[#565656] pb-14">
+    <div className="flex flex-col justify-center items-center min-h-screen pb-14 bg-custom-pattern">
       <img src="icon1.jpg" alt="" className="h-[10rem] m-auto w-[100vw] md:hidden" />
       <div className="p-6 w-full max-w-6xl min-h-screen">
-        <form onSubmit={handleSubmit} className="bg-[#565656] pt-2 pb-7 px-5 w-full md:w-[75vw] mt-2 rounded-lg">
+        <form onSubmit={handleSubmit} className="glassmorphism pt-2 pb-7 px-5 w-full md:w-[75vw] mt-2 rounded-lg">
           {/* Customer Info */}
           <div className="flex flex-col gap-4">
             <div className="hidden">
