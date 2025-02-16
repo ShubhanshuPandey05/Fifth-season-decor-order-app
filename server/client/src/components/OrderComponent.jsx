@@ -267,7 +267,7 @@ export default function UserComponent() {
 
 
   return (
-    <div className="flex flex-col justify-center items-center min-h-screen pb-14 bg-custom-pattern">
+    <div className="flex flex-col justify-center items-center min-h-screen pb-14 bg-custom-pattern bg-center bg-no-repeat bg-cover">
       <img src="icon1.jpg" alt="" className="h-[10rem] m-auto w-[100vw] md:hidden" />
       <div className="p-6 w-full max-w-6xl min-h-screen">
         <form onSubmit={handleSubmit} className="glassmorphism pt-2 pb-7 px-5 w-full md:w-[75vw] mt-2 rounded-lg">
@@ -278,7 +278,7 @@ export default function UserComponent() {
                 type="hidden"
                 readOnly
                 value={companyName}
-                className="border border-gray-300 rounded-md bg-[#a0a1a6] text-gray-700"
+                className="border-b border-gray-300 rounded-md text-gray-700"
                 required
               />
             </div>
@@ -287,7 +287,7 @@ export default function UserComponent() {
                 type="hidden"
                 readOnly
                 value={"+91 " + contactNo}
-                className="border border-gray-300 rounded-md bg-[#a0a1a6] text-gray-700"
+                className="border-b border-gray-300 rounded-md text-gray-700"
               />
             </div>
             <div className="hidden">
@@ -295,7 +295,7 @@ export default function UserComponent() {
                 type="hidden"
                 readOnly
                 value={ownerName}
-                className="border border-gray-300 rounded-md bg-[#a0a1a6] text-gray-700"
+                className="border-b border-gray-300 rounded-md text-gray-700"
                 required
               />
             </div>
@@ -304,7 +304,7 @@ export default function UserComponent() {
                 type="hidden"
                 readOnly
                 value={"+91 " + ownerNo}
-                className="border border-gray-300 rounded-md bg-[#a0a1a6] text-gray-700"
+                className="border-b border-gray-300 rounded-md text-gray-700"
               />
             </div>
             <div className="hidden">
@@ -312,7 +312,7 @@ export default function UserComponent() {
                 type="hidden"
                 readOnly
                 value={accountantName}
-                className="border border-gray-300 rounded-md bg-[#a0a1a6] text-gray-700"
+                className="border-b border-gray-300 rounded-md text-gray-700"
                 required
               />
             </div>
@@ -321,7 +321,7 @@ export default function UserComponent() {
                 type="hidden"
                 readOnly
                 value={"+91 " + accountantNo}
-                className="border border-gray-300 rounded-md bg-[#a0a1a6] text-gray-700"
+                className="border-b border-gray-300 rounded-md text-gray-700"
               />
             </div>
             <div className="hidden">
@@ -329,7 +329,7 @@ export default function UserComponent() {
                 type="hidden"
                 readOnly
                 value={purchaserName}
-                className="border border-gray-300 rounded-md bg-[#a0a1a6] text-gray-700"
+                className="border-b border-gray-300 rounded-md text-gray-700"
                 required
               />
             </div>
@@ -338,7 +338,7 @@ export default function UserComponent() {
                 type="hidden"
                 readOnly
                 value={"+91 " + purchaserNo}
-                className="border border-gray-300 rounded-md bg-[#a0a1a6] text-gray-700"
+                className="border-b border-gray-300 rounded-md text-gray-700"
               />
             </div>
             <div className="flex flex-col">
@@ -346,7 +346,7 @@ export default function UserComponent() {
                 type="text"
                 value={customerName}
                 placeholder="Person Name"
-                className="border border-gray-300 rounded-xl p-2 text-gray-700 bg-[#a0a1a6]"
+                className="border-b border-gray-300 rounded-xl p-2 text-gray-700"
                 onChange={(e) => { setCustomerName(e.target.value) }}
                 required
               />
@@ -362,7 +362,7 @@ export default function UserComponent() {
                       value={unit}
                       checked={orderType === unit}
                       onChange={(e) => setOrderType(e.target.value)}
-                      className="h-4 w-4 md:h-5 md:w-5 bg-[#a0a1a6]"
+                      className="h-4 w-4 md:h-5 md:w-5"
                       required
                     />
                     <span className="text-sm md:text-base">{unit}</span>
@@ -375,7 +375,7 @@ export default function UserComponent() {
                   type="text"
                   value={poNo}
                   placeholder="Ref/PO. No."
-                  className="mt-2 border border-gray-300 rounded-xl p-2 bg-[#a0a1a6] text-gray-700 mb-2"
+                  className="mt-2 border-b border-gray-300 rounded-xl p-2 text-gray-700 mb-2"
                   onChange={(e) => { setPoNo(e.target.value) }}
                 />
               </div>
@@ -399,7 +399,7 @@ export default function UserComponent() {
                       handleItemChange(index, "name", e.target.value);
                       fetchQualityOptions(e.target.value, index); // Assume this function fetches quality options
                     }}
-                    className="border-gray-300 rounded-xl p-2 w-full bg-[#a0a1a6]"
+                    className="border-gray-300 rounded-xl p-2 w-full border-b"
                     required
                   >
                     <option value="">Select Catalog *</option>
@@ -419,7 +419,7 @@ export default function UserComponent() {
                     placeholder="Enter Catalog Name"
                     value={item.customCatalog || ""}
                     onChange={(e) => handleItemChange(index, "customCatalog", e.target.value)}
-                    className="border-gray-300 rounded-xl p-2 w-full col-span-6 md:col-span-3"
+                    className="border-gray-300 border-b rounded-xl p-2 w-full col-span-6 md:col-span-3"
                   />
                 )}
 
@@ -455,7 +455,7 @@ export default function UserComponent() {
                         )
                       );
                     }}
-                    className="border-gray-300 rounded-xl p-2 w-full bg-[#a0a1a6]"
+                    className="border-gray-300 rounded-xl p-2 w-full border-b"
                     required
                   >
                     <option value="">Select Quality *</option>
@@ -477,7 +477,7 @@ export default function UserComponent() {
                     placeholder="Enter Quality Name"
                     value={item.customQuality || ""}
                     onChange={(e) => handleItemChange(index, "customQuality", e.target.value)}
-                    className="border-gray-300 rounded-xl bg-[#a0a1a6] p-2 w-full col-span-6 md:col-span-3"
+                    className="border-gray-300 rounded-xl border-b p-2 w-full col-span-6 md:col-span-3"
                   />
                 )}
 
@@ -517,7 +517,7 @@ export default function UserComponent() {
                     <select
                       value={item.unit}
                       onChange={(e) => handleItemChange(index, 'unit', e.target.value)}
-                      className="border-gray-300 rounded-xl p-2 w-full bg-[#a0a1a6]"
+                      className="border-gray-300 rounded-xl p-2 w-full border-b"
                     >
                       {orderType == "ROLL" ? <option value="ROLL">Roll</option> : orderType == "FOLDER" ? <option value="FOLDER">Folder</option> : orderType == "CUT" ? "" : <option value="">Unit</option>}
                       <option value="Mtrs">Mtrs</option>
@@ -535,7 +535,7 @@ export default function UserComponent() {
                       placeholder="Qty *"
                       value={item.quantity}
                       onChange={(e) => handleItemChange(index, 'quantity', e.target.value)}
-                      className="border-gray-300 rounded-xl p-2 w-full bg-[#a0a1a6]"
+                      className="border-gray-300 rounded-xl p-2 w-full border-b"
                       min={1}
                       required
                     />
@@ -614,7 +614,7 @@ export default function UserComponent() {
                 placeholder="Mode of Transporter"
                 value={dispatchThrough}
                 onChange={(e) => setDispatchThrough(e.target.value)}
-                className="border-gray-300 rounded-xl p-3 border w-full bg-[#a0a1a6]"
+                className="border-gray-300 rounded-xl p-2 border w-full border-b"
                 required
               />
             </div>
@@ -624,7 +624,7 @@ export default function UserComponent() {
                 placeholder="Third Party Name"
                 value={deliveryTo}
                 onChange={(e) => setDeliveryTo(e.target.value)}
-                className="border-gray-300 rounded-xl p-3 border w-full bg-[#a0a1a6]"
+                className="border-gray-300 rounded-xl p-2 border w-full border-b"
               />
             </div>
             <div className="col-span-1 sm:col-span-2">
@@ -633,7 +633,7 @@ export default function UserComponent() {
                 placeholder="Third Party Address"
                 value={deliveryAddress}
                 onChange={(e) => setDeliveryAddress(e.target.value)}
-                className="border-gray-300 rounded-xl p-3 border w-full bg-[#a0a1a6]"
+                className="border-gray-300 rounded-xl p-2 border w-full border-b"
               />
             </div>
             <div className="col-span-1 sm:col-span-2">
@@ -642,7 +642,7 @@ export default function UserComponent() {
                 id="itemNote"
                 value={orderNote}
                 onChange={(e) => setOrderNote(e.target.value)}
-                className="w-full h-[40px] p-2 rounded-xl bg-[#a0a1a6]"
+                className="w-full h-[40px] p-2 rounded-xl border-b"
                 placeholder="Remark"
               ></textarea>
             </div>
