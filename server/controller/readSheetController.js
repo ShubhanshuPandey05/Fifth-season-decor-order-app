@@ -109,6 +109,9 @@ export const getFilteredRows = async (req, res) => {
       // }
 
 
+      // Combining all the Orders and filter them according to date
+
+
     // Combine both arrays
     const resultantRow = [...filteredRows.reverse(), ...filteredRows2.reverse(), ...filteredRows3.reverse()];
     // console.log(resultantRow);

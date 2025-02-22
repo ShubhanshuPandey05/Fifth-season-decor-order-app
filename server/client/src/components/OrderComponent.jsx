@@ -280,7 +280,7 @@ export default function UserComponent() {
                 type="hidden"
                 readOnly
                 value={companyName}
-                className="border-b border-[#8c7764] rounded-md text-[#8c491e]"
+                className="border-b border-[#8c7764] rounded-md text-[#8c7764]"
                 required
               />
             </div>
@@ -289,7 +289,7 @@ export default function UserComponent() {
                 type="hidden"
                 readOnly
                 value={"+91 " + contactNo}
-                className="border-b border-[#8c7764] rounded-md text-[#8c491e]"
+                className="border-b border-[#8c7764] rounded-md text-[#8c7764]"
               />
             </div>
             <div className="hidden">
@@ -297,7 +297,7 @@ export default function UserComponent() {
                 type="hidden"
                 readOnly
                 value={ownerName}
-                className="border-b border-[#8c7764] rounded-md text-[#8c491e]"
+                className="border-b border-[#8c7764] rounded-md text-[#8c7764]"
                 required
               />
             </div>
@@ -306,7 +306,7 @@ export default function UserComponent() {
                 type="hidden"
                 readOnly
                 value={"+91 " + ownerNo}
-                className="border-b border-[#8c7764] rounded-md text-[#8c491e]"
+                className="border-b border-[#8c7764] rounded-md text-[#8c7764]"
               />
             </div>
             <div className="hidden">
@@ -314,7 +314,7 @@ export default function UserComponent() {
                 type="hidden"
                 readOnly
                 value={accountantName}
-                className="border-b border-[#8c7764] rounded-md text-[#8c491e]"
+                className="border-b border-[#8c7764] rounded-md text-[#8c7764]"
                 required
               />
             </div>
@@ -323,7 +323,7 @@ export default function UserComponent() {
                 type="hidden"
                 readOnly
                 value={"+91 " + accountantNo}
-                className="border-b border-[#8c7764] rounded-md text-[#8c491e]"
+                className="border-b border-[#8c7764] rounded-md text-[#8c7764]"
               />
             </div>
             <div className="hidden">
@@ -331,7 +331,7 @@ export default function UserComponent() {
                 type="hidden"
                 readOnly
                 value={purchaserName}
-                className="border-b border-[#8c7764] rounded-md text-[#8c491e]"
+                className="border-b border-[#8c7764] rounded-md text-[#8c7764]"
                 required
               />
             </div>
@@ -340,7 +340,7 @@ export default function UserComponent() {
                 type="hidden"
                 readOnly
                 value={"+91 " + purchaserNo}
-                className="border-b border-[#8c7764] rounded-md text-[#8c491e]"
+                className="border-b border-[#8c7764] rounded-md text-[#8c7764]"
               />
             </div>
             <div className="flex flex-col">
@@ -348,14 +348,14 @@ export default function UserComponent() {
                 type="text"
                 value={customerName}
                 placeholder="Name of the Person Ordering"
-                className="border-b border-[#8c7764] rounded-xl p-2 bg-[#fffdf5] text-[#8c491e]"
+                className="border-b border-[#8c7764] rounded-xl p-2 bg-[#fffdf5] text-[#8c7764]"
                 onChange={(e) => { setCustomerName(e.target.value) }}
                 required
               />
             </div>
             <div className="md:flex justify-between items-center">
               <div className="border-[#8c7764] flex rounded-md p-2 space-x-2 md:space-x-6 w-full">
-                <p className="font-semibold text-[#8c491e]">Order Type :</p>
+                <p className="font-semibold text-[#8c7764]">Order Type :</p>
                 {orderTypeList.map((unit, index) => (
                   <label key={index} className="flex items-center space-x-1 md:space-x-4  my-1">
                     <input
@@ -364,10 +364,10 @@ export default function UserComponent() {
                       value={unit}
                       checked={orderType === unit}
                       onChange={(e) => setOrderType(e.target.value)}
-                      className="h-4 w-4 md:h-5 md:w-5 text-[#8c491e] bg-[#fffdf5]"
+                      className="h-4 w-4 md:h-5 md:w-5 text-[#8c7764] bg-[#fffdf5]"
                       required
                     />
-                    <span className="text-sm md:text-base text-[#8c491e]">{unit}</span>
+                    <span className="text-sm md:text-base text-[#8c7764]">{unit}</span>
                   </label>
                 ))}
               </div>
@@ -377,7 +377,7 @@ export default function UserComponent() {
                   type="text"
                   value={poNo}
                   placeholder="Ref/PO. No."
-                  className="mt-2 border-b border-[#8c7764] rounded-xl p-2 text-[#8c491e] mb-2 bg-[#fffdf5]"
+                  className="mt-2 border-b border-[#8c7764] rounded-xl p-2 text-[#8c7764] mb-2 bg-[#fffdf5]"
                   onChange={(e) => { setPoNo(e.target.value) }}
                 />
               </div>
@@ -387,7 +387,7 @@ export default function UserComponent() {
 
           {/* Items Section */}
           <div className="mb-6">
-            <h2 className="text-lg font-medium text-[#8c491e] mb-4">Item Details</h2>
+            <h2 className="text-lg font-medium text-[#8c7764] mb-4">Item Details</h2>
             {items.map((item, index) => (
               <div
                 key={index}
@@ -401,16 +401,16 @@ export default function UserComponent() {
                       handleItemChange(index, "name", e.target.value);
                       fetchQualityOptions(e.target.value, index); // Assume this function fetches quality options
                     }}
-                    className="border-[#8c7764] rounded-xl p-2 w-full border-b text-[#8c491e] bg-[#fffdf5]"
+                    className="border-[#8c7764] rounded-xl p-2 w-full border-b text-[#8c7764] bg-[#fffdf5]"
                     required
                   >
-                    <option value="" className="text-[#8c491e]">Select Catalog *</option>
+                    <option value="" className="text-[#8c7764]">Select Catalog *</option>
                     {catalogOptions.map((option, i) => (
-                      <option key={i} value={option} className="text-[#8c491e]">
+                      <option key={i} value={option} className="text-[#8c7764]">
                         {option}
                       </option>
                     ))}
-                    <option value="Other" className="text-[#8c491e]">Not listed here</option>
+                    <option value="Other" className="text-[#8c7764]">Not listed here</option>
                   </select>
                 </div>
 
@@ -421,7 +421,7 @@ export default function UserComponent() {
                     placeholder="Enter Catalog Name"
                     value={item.customCatalog || ""}
                     onChange={(e) => handleItemChange(index, "customCatalog", e.target.value)}
-                    className="border-[#8c7764] border-b rounded-xl p-2 w-full col-span-6 md:col-span-3 text-[#8c491e] bg-[#fffdf5]"
+                    className="border-[#8c7764] border-b rounded-xl p-2 w-full col-span-6 md:col-span-3 text-[#8c7764] bg-[#fffdf5]"
                   />
                 )}
 
@@ -457,18 +457,18 @@ export default function UserComponent() {
                         )
                       );
                     }}
-                    className="border-[#8c7764] rounded-xl p-2 w-full border-b text-[#8c491e] bg-[#fffdf5]"
+                    className="border-[#8c7764] rounded-xl p-2 w-full border-b text-[#8c7764] bg-[#fffdf5]"
                     required
                   >
-                    <option value="" className="text-[#8c491e]">Select Quality *</option>
+                    <option value="" className="text-[#8c7764]">Select Quality *</option>
                     {qualityOptions[index]
                       ?.slice(qualityOptions[index][0]?.startsWith("http") ? 1 : 0)
                       .map((quality, i) => (
-                        <option key={i} value={quality} className="text-[#8c491e]">
+                        <option key={i} value={quality} className="text-[#8c7764]">
                           {quality}
                         </option>
                       ))}
-                    <option value="Other" className="text-[#8c491e]">Not listed here</option>
+                    <option value="Other" className="text-[#8c7764]">Not listed here</option>
                   </select>
                 </div>
 
@@ -479,7 +479,7 @@ export default function UserComponent() {
                     placeholder="Enter Quality Name"
                     value={item.customQuality || ""}
                     onChange={(e) => handleItemChange(index, "customQuality", e.target.value)}
-                    className="border-[#8c7764] rounded-xl border-b p-2 w-full col-span-6 md:col-span-3 text-[#8c491e] bg-[#fffdf5]"
+                    className="border-[#8c7764] rounded-xl border-b p-2 w-full col-span-6 md:col-span-3 text-[#8c7764] bg-[#fffdf5]"
                   />
                 )}
 
@@ -519,7 +519,7 @@ export default function UserComponent() {
                     <select
                       value={item.unit}
                       onChange={(e) => handleItemChange(index, 'unit', e.target.value)}
-                      className="border-[#8c7764] rounded-xl p-2 w-full border-b text-[#8c491e] bg-[#fffdf5]"
+                      className="border-[#8c7764] rounded-xl p-2 w-full border-b text-[#8c7764] bg-[#fffdf5]"
                     >
                       {orderType == "ROLL" ? <option value="ROLL">Roll</option> : orderType == "FOLDER" ? <option value="FOLDER">Folder</option> : orderType == "CUT" ? "" : <option value="">Unit</option>}
                       <option value="Mtrs">Mtrs</option>
@@ -537,7 +537,7 @@ export default function UserComponent() {
                       placeholder="Qty *"
                       value={item.quantity}
                       onChange={(e) => handleItemChange(index, 'quantity', e.target.value)}
-                      className="border-[#8c7764] rounded-xl p-2 w-full border-b text-[#8c491e] bg-[#fffdf5]"
+                      className="border-[#8c7764] rounded-xl p-2 w-full border-b text-[#8c7764] bg-[#fffdf5]"
                       min={1}
                       required
                     />
@@ -569,7 +569,7 @@ export default function UserComponent() {
                     >
                       <svg
                         xmlns="http://www.w3.org/2000/svg"
-                        className="h-6 w-6 text-[#8c491e] hover:text-red-600"
+                        className="h-6 w-6 text-[#8c7764] hover:text-red-600"
                         fill="none"
                         viewBox="0 0 24 24"
                         stroke="currentColor"
@@ -616,7 +616,7 @@ export default function UserComponent() {
                 placeholder="Mode of Transporter"
                 value={dispatchThrough}
                 onChange={(e) => setDispatchThrough(e.target.value)}
-                className="border-[#8c7764] rounded-xl p-2 border w-full border-b text-[#8c491e] bg-[#fffdf5]"
+                className="border-[#8c7764] rounded-xl p-2 border w-full border-b text-[#8c7764] bg-[#fffdf5]"
                 required
               />
             </div>
@@ -626,7 +626,7 @@ export default function UserComponent() {
                 placeholder="Third Party Name"
                 value={deliveryTo}
                 onChange={(e) => setDeliveryTo(e.target.value)}
-                className="border-[#8c7764] rounded-xl p-2 border w-full border-b text-[#8c491e] bg-[#fffdf5]"
+                className="border-[#8c7764] rounded-xl p-2 border w-full border-b text-[#8c7764] bg-[#fffdf5]"
               />
             </div>
             <div className="col-span-1 sm:col-span-2">
@@ -635,7 +635,7 @@ export default function UserComponent() {
                 placeholder="Third Party Address"
                 value={deliveryAddress}
                 onChange={(e) => setDeliveryAddress(e.target.value)}
-                className="border-[#8c7764] rounded-xl p-2 border w-full border-b text-[#8c491e] bg-[#fffdf5]"
+                className="border-[#8c7764] rounded-xl p-2 border w-full border-b text-[#8c7764] bg-[#fffdf5]"
               />
             </div>
             <div className="col-span-1 sm:col-span-2">
@@ -644,7 +644,7 @@ export default function UserComponent() {
                 id="itemNote"
                 value={orderNote}
                 onChange={(e) => setOrderNote(e.target.value)}
-                className="w-full h-[45px] p-2 rounded-xl border-b text-[#8c491e] bg-[#fffdf5]"
+                className="w-full h-[45px] p-2 rounded-xl border-b text-[#8c7764] bg-[#fffdf5]"
                 placeholder="Remark"
               ></textarea>
             </div>
@@ -666,7 +666,7 @@ export default function UserComponent() {
       {showConfirmModal && (
         <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
-            <h2 className="text-xl font-semibold mb-4 text-[#8c491e]">Confirm Your Order</h2>
+            <h2 className="text-xl font-semibold mb-4 text-[#8c7764]">Confirm Your Order</h2>
             <p className="text-gray-600">Are you sure you want to place this order?</p>
             <div className="mt-4 flex justify-between">
               <button
@@ -690,7 +690,7 @@ export default function UserComponent() {
       {showSuccessModal && (
         <div className="fixed inset-0 bg-gray-500 bg-opacity-75 flex justify-center items-center z-50">
           <div className="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full">
-            <h2 className="text-xl font-semibold mb-4 text-[#8c491e]">Order Successfully Placed</h2>
+            <h2 className="text-xl font-semibold mb-4 text-[#8c7764]">Order Successfully Placed</h2>
             <p className="text-gray-600">Your order has been placed successfully!</p>
             <div className="mt-4 flex justify-center">
               <button
