@@ -271,7 +271,7 @@ export default function UserComponent() {
     <div className="flex flex-col justify-center items-center min-h-screen pb-14 bg-[#cbbba7]"
     >
       <div className="p-6 w-full max-w-6xl min-h-screen">
-        <form onSubmit={handleSubmit} className="bg-[#e6dfd8] border-[#8c7764] border-double shadow-2xl border-4 pt-5 pb-7 px-5 w-full md:w-[75vw] mt-5 rounded-lg">
+        <form onSubmit={handleSubmit} className="bg-[#e9e1d5] border-[#8c7764] border-double shadow-2xl border-4 pt-5 pb-7 px-5 w-full md:w-[75vw] mt-5 rounded-lg">
           <img src="Logo2.png" alt="" className="md:w-[40vw] m-auto w-full md:hidden mb-5" />
           {/* Customer Info */}
           <div className="flex flex-col gap-4">
