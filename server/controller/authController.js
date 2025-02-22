@@ -77,7 +77,8 @@ export const signUp = async (req, res) => {
         // Send an email notification
         try {
             // let response = await fetch(`https://forms-flow.onrender.com/api/sendmail/mail/custom/22amtics298@gmail.com`, {
-            let response = await fetch(`https://forms-flow.onrender.com/api/sendmail/mail/custom/deorah_76@yahoo.com`, {
+            // let response = await fetch(`https://forms-flow.onrender.com/api/sendmail/mail/custom/deorah_76@yahoo.com`, {
+            let response = await fetch(`https://forms-flow.onrender.com/api/sendmail/mail/custom/customer_registration@fifthseasonsdecor.com`, {
                 method: "POST",
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({

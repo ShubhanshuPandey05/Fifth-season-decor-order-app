@@ -272,7 +272,7 @@ export default function UserComponent() {
     >
       <div className="p-6 w-full max-w-6xl min-h-screen">
         <form onSubmit={handleSubmit} className="bg-[#e9e1d5] border-[#8c7764] border-double shadow-2xl border-4 pt-5 pb-7 px-5 w-full md:w-[75vw] mt-5 rounded-lg">
-          <img src="Logo2.png" alt="" className="md:w-[40vw] m-auto w-full md:hidden mb-5" />
+          <img src="Logoo.png" alt="" className="md:w-[40vw] m-auto w-full md:hidden mb-5" />
           {/* Customer Info */}
           <div className="flex flex-col gap-4">
             <div className="hidden">
@@ -355,7 +355,7 @@ export default function UserComponent() {
             </div>
             <div className="md:flex justify-between items-center">
               <div className="border-[#8c7764] flex rounded-md p-2 space-x-2 md:space-x-6 w-full">
-                <p className="font-semibold text-[#8c7764]">Order Type :</p>
+                <p className="text-[#8c7764] text-lg">Order Type :</p>
                 {orderTypeList.map((unit, index) => (
                   <label key={index} className="flex items-center space-x-1 md:space-x-4  my-1">
                     <input
@@ -522,7 +522,7 @@ export default function UserComponent() {
                       className="border-[#8c7764] rounded-xl p-2 w-full border-b text-[#8c7764] bg-[#fffdf5]"
                     >
                       {orderType == "ROLL" ? <option value="ROLL">Roll</option> : orderType == "FOLDER" ? <option value="FOLDER">Folder</option> : orderType == "CUT" ? "" : <option value="">Unit</option>}
-                      <option value="Mtrs">Mtrs</option>
+                      {orderType!== "FOLDER" ? <option value="Mtrs">Mtrs</option> : "" }
                       {/* {orderType == "ROLL" ? <option value="ROLL">Roll</option> : ""}
                       {orderType == "FOLDER" ? <option value="FOLDER">Folder</option> : ""} */}
                       {/* {units.map((unit) => (
