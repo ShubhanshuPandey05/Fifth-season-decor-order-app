@@ -268,7 +268,7 @@ export default function UserComponent() {
 
   return (
     // <div className="flex flex-col justify-center items-center min-h-screen pb-14 bg-custom-pattern bg-center bg-no-repeat bg-cover" style={{ backgroundImage: "url('/bg-image.jpg')" }}
-    <div className="flex flex-col justify-center items-center min-h-screen pb-14 bg-[#eec99d]"
+    <div className="flex flex-col justify-center items-center min-h-screen pb-14 bg-[#BFAC95]"
     >
       <div className="p-6 w-full max-w-6xl min-h-screen">
         <form onSubmit={handleSubmit} className="glassmorphism border-[#8c491e] border-4 pt-5 pb-7 px-5 w-full md:w-[75vw] mt-5 rounded-lg">
