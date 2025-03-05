@@ -545,7 +545,8 @@ export default function UserComponent() {
                       value={item.quantity}
                       onChange={(e) => handleItemChange(index, 'quantity', e.target.value)}
                       className="border-[#8c7764] rounded-xl p-2 w-full border-b text-[#8c7764] bg-[#fffdf5]"
-                      min={1}
+                      min={65}
+                      step="any"
                       required
                     />
 

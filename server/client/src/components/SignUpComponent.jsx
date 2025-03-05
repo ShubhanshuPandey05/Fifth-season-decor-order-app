@@ -136,7 +136,7 @@ export default function SignUpComponent() {
                     name="Address"
                     className="h-12 p-4 mb-4 w-full border rounded-lg"
                     placeholder="Address*"
-                    value={data.State}
+                    value={data.Address}
                     onChange={(e) => setData({ ...data, Address: e.target.value })}
                     required
                 />
@@ -145,7 +145,7 @@ export default function SignUpComponent() {
                     name="Email"
                     className="h-12 p-4 mb-4 w-full border rounded-lg"
                     placeholder="Email*"
-                    value={data.State}
+                    value={data.Email}
                     onChange={(e) => setData({ ...data, Email: e.target.value })}
                     required
                 />
@@ -154,7 +154,7 @@ export default function SignUpComponent() {
                     name="Pincode"
                     className="h-12 p-4 mb-4 w-full border rounded-lg"
                     placeholder="Pincode*"
-                    value={data.State}
+                    value={data.Pincode}
                     onChange={(e) => setData({ ...data, Pincode: e.target.value })}
                     required
                 />
