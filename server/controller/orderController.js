@@ -119,9 +119,9 @@ export const updateOrder = async (req, res) => {
       poNo,
       ownerName,
       ownerNo,
-      accountantName, 
-      accountantNo, 
-      purchaserName, 
+      accountantName,
+      accountantNo,
+      purchaserName,
       purchaserNo,
     } = req.body;
 
@@ -141,6 +141,7 @@ export const updateOrder = async (req, res) => {
 
     // Determine the sheet name based on orderType
     const SHEET_NAME = orderType === "CUT" ? "CUT" : orderType === "ROLL" ? "ROLL" : "FOLDER";
+    const prefix = orderType === "CUT" ? "C" : "R";
 
     // Fetch existing rows to determine the next SR NO
     const getResponse = await sheets.spreadsheets.values.get({
@@ -154,7 +155,7 @@ export const updateOrder = async (req, res) => {
     if (existingRows.length > 1) {
       // Get the last SR NO and timestamp from the last row
       const lastRow = existingRows[existingRows.length - 1];
-      lastSRNo = parseInt(lastRow[0]) || 0; // SR NO is in the third column (index 2)
+      lastSRNo = parseInt(lastRow[0].slice(1)) || 0; // SR NO is in the third column (index 2)
     } // Next SR NO (assuming header is in the first row)
 
     // console.log(existingRows,"hii");
@@ -171,7 +172,7 @@ export const updateOrder = async (req, res) => {
       return [
         new Date().toLocaleDateString("en-IN", options), // Date
         new Date().toLocaleTimeString("en-IN", options), // Time
-        srNo, // SR NO
+        prefix + srNo, // SR NO
         poNo,
         companyName, // COMPANY NAME
         city, // CITY/TOWN
@@ -191,6 +192,8 @@ export const updateOrder = async (req, res) => {
         deliveryAddress,
         orderNote,// Order Note
         "Pending", // Order Status
+        "",
+        "",
         "",
         "",
         "",
@@ -230,3 +233,64 @@ export const updateOrder = async (req, res) => {
     res.status(500).json({ error: error.message });
   }
 };
+
+
+export const addRegistration = async (user) => {
+  const client = await auth.getClient();
+  const sheets = google.sheets({ version: "v4", auth: client });
+
+  const SHEET_NAME = "REGISTRATION LIST";
+
+
+  const getResponse = await sheets.spreadsheets.values.get({
+    spreadsheetId: SPREADSHEET_ID,
+    range: `${SHEET_NAME}!A:A`, // Get the SR NO column
+  });
+
+  const existingRows = getResponse.data.values || [];
+  let lastSRNo = 0;
+
+  if (existingRows.length > 1) {
+    // Get the last SR NO and timestamp from the last row
+    const lastRow = existingRows[existingRows.length - 1];
+    lastSRNo = parseInt(lastRow[0].slice(3)) || 0;
+  }
+
+  const prefix = "FSD"
+  const srNo = lastSRNo + 1;
+
+  const row = [
+    prefix + srNo, ,
+    user.Companyname,
+    user.Email,
+    user.City,
+    user.State,
+    user.Address,
+    user.Pincode,
+    user.GST_No,
+    user.PAN_No,
+    user.OwnerName,
+    user.OwnerNo,
+    user.AccountantName,
+    user.AccountantNo,
+    user.PurchaserName,
+    user.PurchaserNo,
+    user.MobileNo,
+    "YES"
+  ]
+
+  const response = await sheets.spreadsheets.values.append({
+    spreadsheetId: SPREADSHEET_ID,
+    range: SHEET_NAME,
+    valueInputOption: "RAW",
+    insertDataOption: "INSERT_ROWS",
+    requestBody: {
+      values: row,
+    },
+  });
+  
+  res.status(200).json({
+    message: `Spreadsheet updated successfully in ${SHEET_NAME} sheet`,
+    response,
+  });
+}

@@ -102,7 +102,7 @@ export default function UserComponent() {
 
 
   // const units = ["Mtr",orderType=="ROLL"??"ROLL"];
-  const orderTypeList = ["CUT", "ROLL", "FOLDER"];
+  const orderTypeList = ["CUT", "ROLL"];
 
   const handleItemChange = (index, field, value) => {
     setItems((prevItems) =>
@@ -521,8 +521,15 @@ export default function UserComponent() {
                       onChange={(e) => handleItemChange(index, 'unit', e.target.value)}
                       className="border-[#8c7764] rounded-xl p-2 w-full border-b text-[#8c7764] bg-[#fffdf5]"
                     >
-                      {orderType == "ROLL" ? <option value="ROLL">Roll</option> : orderType == "FOLDER" ? <option value="FOLDER">Folder</option> : orderType == "CUT" ? "" : <option value="">Unit</option>}
-                      {orderType!== "FOLDER" ? <option value="Mtrs">Mtrs</option> : "" }
+                      {/* {orderType == "ROLL" ? <option value="ROLL">Roll</option> : orderType == "FOLDER" ? <option value="FOLDER">Folder</option> : orderType == "CUT" ? "" : <option value="">Unit</option>} */}
+                      {/* {orderType!== "FOLDER" ? <option value="Mtrs">Mtrs</option> : "" } */}
+
+
+
+                      <option value="Mtrs">Mtrs</option>
+
+
+                      
                       {/* {orderType == "ROLL" ? <option value="ROLL">Roll</option> : ""}
                       {orderType == "FOLDER" ? <option value="FOLDER">Folder</option> : ""} */}
                       {/* {units.map((unit) => (
@@ -602,7 +609,7 @@ export default function UserComponent() {
             <button
               type="button"
               onClick={handleAddItem}
-              className="bg-[#8c7764] text-white px-4 py-2 rounded-lg hover:bg-[#8c491a]"
+              className="bg-[#8c7764] text-white px-4 py-2 rounded-lg hover:bg-[#8c7764]"
             >
               + Add Item
             </button>
@@ -655,7 +662,7 @@ export default function UserComponent() {
           <div className="text-center">
             <button
               type="submit"
-              className="px-6 py-3 bg-[#8c7764] text-white rounded-lg hover:bg-[#8c491e]"
+              className="px-6 py-3 bg-[#8c7764] text-white rounded-lg hover:bg-[#8c7764]"
             >
               Submit Order
             </button>

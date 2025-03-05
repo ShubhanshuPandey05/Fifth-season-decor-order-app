@@ -56,6 +56,18 @@ const userSchema = new mongoose.Schema({
         type:String,
         required:true
     },
+    Address:{
+        type:String,
+        required:true
+    },
+    Email:{
+        type:String,
+        required:true,
+    },
+    Pincode:{
+        type:String,
+        required:true
+    },
     Temp_Token:{
         type:String,
         required:true

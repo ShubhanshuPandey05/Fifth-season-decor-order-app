@@ -18,6 +18,9 @@ export default function SignUpComponent() {
         State: '',
         City: '',
         Password: '',
+        Address: '',
+        Pincode: '',
+        Email: ''
     });
 
     const handleSignUp = async (e) => {
@@ -28,7 +31,7 @@ export default function SignUpComponent() {
     return (
         <div className="flex justify-center items-center min-h-screen md:bg-gray-100">
             <form onSubmit={handleSignUp} className="max-w-md mx-auto my-10 p-8 bg-white rounded-lg md:shadow-md">
-                <h2 className="text-3xl font-bold mb-8 text-center">Registeration</h2>
+                <h2 className="text-3xl font-bold mb-8 text-center">Registration</h2>
 
                 <input
                     type="text"
@@ -121,22 +124,38 @@ export default function SignUpComponent() {
 
                 <input
                     type="text"
-                    name="MobileNo"
-                    className="h-12 p-4 mb-4 w-full border rounded-lg"
-                    placeholder="Mobile No/Login Id*"
-                    value={data.MobileNo}
-                    onChange={(e) => setData({ ...data, MobileNo: e.target.value })}
-                    maxLength={10}
-                    required
-                />
-
-                <input
-                    type="text"
                     name="State"
                     className="h-12 p-4 mb-4 w-full border rounded-lg"
                     placeholder="State*"
                     value={data.State}
                     onChange={(e) => setData({ ...data, State: e.target.value })}
+                    required
+                />
+                <input
+                    type="text"
+                    name="Address"
+                    className="h-12 p-4 mb-4 w-full border rounded-lg"
+                    placeholder="Address*"
+                    value={data.State}
+                    onChange={(e) => setData({ ...data, Address: e.target.value })}
+                    required
+                />
+                <input
+                    type="text"
+                    name="Email"
+                    className="h-12 p-4 mb-4 w-full border rounded-lg"
+                    placeholder="Email*"
+                    value={data.State}
+                    onChange={(e) => setData({ ...data, Email: e.target.value })}
+                    required
+                />
+                <input
+                    type="text"
+                    name="Pincode"
+                    className="h-12 p-4 mb-4 w-full border rounded-lg"
+                    placeholder="Pincode*"
+                    value={data.State}
+                    onChange={(e) => setData({ ...data, Pincode: e.target.value })}
                     required
                 />
 
@@ -149,6 +168,18 @@ export default function SignUpComponent() {
                     onChange={(e) => setData({ ...data, City: e.target.value })}
                     required
                 />
+
+                <input
+                    type="text"
+                    name="MobileNo"
+                    className="h-12 p-4 mb-4 w-full border rounded-lg"
+                    placeholder="Mobile No/Login Id*"
+                    value={data.MobileNo}
+                    onChange={(e) => setData({ ...data, MobileNo: e.target.value })}
+                    maxLength={10}
+                    required
+                />
+
 
                 <input
                     type="password"

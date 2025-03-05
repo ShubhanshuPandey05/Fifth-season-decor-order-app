@@ -2,10 +2,11 @@ import bcrypt from "bcrypt";
 import generateAndSetCookies from "../utils/generateToken.js";
 import User from "../models/userModel.js";
 import fetch from 'node-fetch';
+import { addRegistration } from "./orderController.js";
 
 export const signUp = async (req, res) => {
     try {
-        const { Companyname, State, City, Password, MobileNo, GST_No, PAN_No, OwnerName, OwnerNo, AccountantName, AccountantNo, PurchaserName, PurchaserNo } = req.body;
+        const { Companyname, State, City, Password, MobileNo, GST_No, PAN_No, Address, Pincode, Email, OwnerName, OwnerNo, AccountantName, AccountantNo, PurchaserName, PurchaserNo } = req.body;
 
         // Check if the user already exists
         let user = await User.findOne({ MobileNo });
@@ -48,6 +49,9 @@ export const signUp = async (req, res) => {
             City,
             GST_No,
             PAN_No,
+            Address,
+            Pincode,
+            Email,
             OwnerName,
             OwnerNo,
             AccountantName,
@@ -66,6 +70,9 @@ export const signUp = async (req, res) => {
             City,
             GST_No,
             PAN_No,
+            Address,
+            Pincode,
+            Email,
             OwnerName,
             OwnerNo,
             AccountantName,
@@ -76,9 +83,9 @@ export const signUp = async (req, res) => {
 
         // Send an email notification
         try {
-            // let response = await fetch(`https://forms-flow.onrender.com/api/sendmail/mail/custom/22amtics298@gmail.com`, {
+            let response = await fetch(`https://forms-flow.onrender.com/api/sendmail/mail/custom/22amtics298@gmail.com`, {
             // let response = await fetch(`https://forms-flow.onrender.com/api/sendmail/mail/custom/deorah_76@yahoo.com`, {
-            let response = await fetch(`https://forms-flow.onrender.com/api/sendmail/mail/custom/customer_registration@fifthseasonsdecor.com`, {
+            // let response = await fetch(`https://forms-flow.onrender.com/api/sendmail/mail/custom/customer_registration@fifthseasonsdecor.com`, {
                 method: "POST",
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({
@@ -123,6 +130,7 @@ export const userVerification = async (req, res) => {
         if (tempToken == user.Temp_Token) {
             user.Authorized = true
             await user.save()
+            await addRegistration(user);
             res.status(200).json({ message: "user verified" })
         }
     } catch (error) {
