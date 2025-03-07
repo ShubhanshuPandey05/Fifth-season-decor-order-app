@@ -49,6 +49,7 @@ export default function UserComponent() {
   ]);
 
   const [dispatchThrough, setDispatchThrough] = useState("");
+  const [dispatcherName, setDispatcherName] = useState("");
   const [deliveryTo, setDeliveryTo] = useState("");
   const [deliveryAddress, setDeliveryAddress] = useState("");
   const [orderNote, setOrderNote] = useState("");
@@ -197,7 +198,7 @@ export default function UserComponent() {
         // const response = await fetch("http://localhost:8000/api/update-spreadsheet", {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ companyName, poNo, ownerName, ownerNo, accountantName, accountantNo, purchaserName, purchaserNo, customerName, contactNo, state, city, items: processedItems, dispatchThrough, deliveryTo, deliveryAddress, orderNote, orderType }),
+        body: JSON.stringify({ companyName, poNo, ownerName, ownerNo, accountantName, accountantNo, purchaserName, purchaserNo, customerName, contactNo, state, city, items: processedItems, dispatchThrough, dispatcherName, deliveryTo, deliveryAddress, orderNote, orderType }),
         credentials: 'include',
       });
 
@@ -218,6 +219,9 @@ export default function UserComponent() {
           catalogSelected: false,
         }]);
         setDispatchThrough("");
+        setDispatcherName("");
+        setCustomerName("");
+        setPoNo("");
         setDeliveryTo("");
         setOrderNote("")
         setDeliveryAddress("")
@@ -529,7 +533,7 @@ export default function UserComponent() {
                       <option value="Mtrs">Mtrs</option>
 
 
-                      
+
                       {/* {orderType == "ROLL" ? <option value="ROLL">Roll</option> : ""}
                       {orderType == "FOLDER" ? <option value="FOLDER">Folder</option> : ""} */}
                       {/* {units.map((unit) => (
@@ -619,15 +623,35 @@ export default function UserComponent() {
           {/* Dispatch and Due Days */}
           <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-6">
             <div className="col-span-1">
-              <input
-                type="text"
-                placeholder="Mode of Transporter"
+              <select
                 value={dispatchThrough}
                 onChange={(e) => setDispatchThrough(e.target.value)}
-                className="border-[#8c7764] rounded-xl p-2 border w-full border-b text-[#8c7764] bg-[#fffdf5]"
+                className="border-[#8c7764] rounded-xl p-2 border w-full text-[#8c7764] bg-[#fffdf5] h-[42px]"
                 required
-              />
+              >
+                <option value="">Select Mode of Dispatch</option>
+                <option value="Transport">Transport</option>
+                <option value="Courier">Courier</option>
+                <option value="Bus">Bus</option>
+                <option value="Tempo">Tempo</option>
+                <option value="Hand Delivery">Hand Delivery</option>
+              </select>
             </div>
+
+            {/* Show additional input if anything other than "Hand Delivery" is selected */}
+            {dispatchThrough && dispatchThrough !== "Hand Delivery" && (
+              <div className="col-span-1">
+                <input
+                  type="text"
+                  placeholder={`Enter ${dispatchThrough} Name`}
+                  value={dispatcherName}
+                  onChange={(e) => setDispatcherName(e.target.value)}
+                  className="border-[#8c7764] rounded-xl p-2 border w-full text-[#8c7764] bg-[#fffdf5]"
+                  required
+                />
+              </div>
+            )}
+
             <div className="col-span-1">
               <input
                 type="text"

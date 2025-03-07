@@ -111,6 +111,7 @@ export const updateOrder = async (req, res) => {
       city,
       items,
       dispatchThrough,
+      dispatcherName,
       dueDays,
       orderNote,
       orderType, // CUT or ROLL
@@ -188,6 +189,7 @@ export const updateOrder = async (req, res) => {
         item.rate || "", // Rate
         item.amount || "", // Amount
         dispatchThrough, // MODE OF DISPATCH
+        dispatcherName, // DISPATCHER NAME
         deliveryTo,
         deliveryAddress,
         orderNote,// Order Note
@@ -239,6 +241,8 @@ export const addRegistration = async (user) => {
   const client = await auth.getClient();
   const sheets = google.sheets({ version: "v4", auth: client });
 
+
+
   const SHEET_NAME = "REGISTRATION LIST";
 
 
@@ -247,8 +251,11 @@ export const addRegistration = async (user) => {
     range: `${SHEET_NAME}!A:A`, // Get the SR NO column
   });
 
+
+
   const existingRows = getResponse.data.values || [];
   let lastSRNo = 0;
+
 
   if (existingRows.length > 1) {
     // Get the last SR NO and timestamp from the last row
@@ -256,11 +263,12 @@ export const addRegistration = async (user) => {
     lastSRNo = parseInt(lastRow[0].slice(3)) || 0;
   }
 
+
   const prefix = "FSD"
   const srNo = lastSRNo + 1;
 
   const row = [
-    prefix + srNo, ,
+    prefix + srNo,
     user.Companyname,
     user.Email,
     user.City,
@@ -285,12 +293,8 @@ export const addRegistration = async (user) => {
     valueInputOption: "RAW",
     insertDataOption: "INSERT_ROWS",
     requestBody: {
-      values: row,
+      values: [row],
     },
   });
-  
-  res.status(200).json({
-    message: `Spreadsheet updated successfully in ${SHEET_NAME} sheet`,
-    response,
-  });
+  return true
 }

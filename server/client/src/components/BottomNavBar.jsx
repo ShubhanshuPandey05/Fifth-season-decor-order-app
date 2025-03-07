@@ -53,11 +53,11 @@ const BottomNavBar = () => {
   };
 
   return (
-    <div className="bg-white h-[4.4rem] rounded-t-xl fixed bottom-0 left-0 right-0 shadow-md w-screen" ref={navRef}>
+    <div className="bg-[#fff7e9] h-[4.4rem] rounded-t-xl fixed bottom-0 left-0 right-0 shadow-md w-screen" ref={navRef}>
       <ul className="flex relative justify-around" >
         {/* Active Indicator */}
         <span
-          className="bg-blue-600 duration-500 border-4 border-white h-16 w-16 absolute -top-5 rounded-full"
+          className="bg-amber-900 duration-500 border-4 border-white h-16 w-16 absolute -top-5 rounded-full"
           style={{ left: `${indicatorPosition.left - 32}px` }}
         >
           <span className="w-3.5 h-3.5 bg-transparent absolute top-4 -left-[18px] rounded-tr-[11px] shadow-myShadow1"></span>
