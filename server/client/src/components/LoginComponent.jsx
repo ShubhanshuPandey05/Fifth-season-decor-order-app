@@ -17,7 +17,7 @@ export default function LoginComponent() {
 
     return (
         <div className='flex justify-center items-center min-h-screen md:bg-gray-100'>
-            <form onSubmit={handleSignIn} className="max-w-md mx-auto my-10 p-8 bg-white rounded-lg md:shadow-md">
+            <form onSubmit={handleSignIn} className="max-w-md mx-auto my-10 p-8 bg-white rounded-lg md:shadow-md min-w-md">
                 <h2 className="text-3xl font-bold mb-8 text-center">Login</h2>
 
                 <input
