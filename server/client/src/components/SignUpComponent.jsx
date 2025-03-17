@@ -4,6 +4,7 @@ import useSignUp from '../hooks/useSignUp';
 
 export default function SignUpComponent() {
     const { signUp } = useSignUp();
+    const [showPassword, setShowPassword] = useState(false);
     const [data, setData] = useState({
         Companyname: '',
         GST_No: '',
@@ -181,16 +182,25 @@ export default function SignUpComponent() {
                 />
 
 
-                <input
-                    type="password"
-                    name="Password"
-                    className="h-12 p-4 mb-4 w-full border rounded-lg"
-                    placeholder="Password* (Min. 6 characters)"
-                    value={data.Password}
-                    onChange={(e) => setData({ ...data, Password: e.target.value })}
-                    minLength={6}
-                    required
-                />
+                <div className="relative w-full">
+                    <input
+                        type={showPassword ? 'text' : 'password'}
+                        name="Password"
+                        className="h-12 p-4 mb-4 w-full border rounded-lg pr-12"
+                        placeholder="Password* (Min. 6 characters)"
+                        value={data.Password}
+                        onChange={(e) => setData({ ...data, Password: e.target.value })}
+                        minLength={6}
+                        required
+                    />
+                    <button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                        className="absolute right-4 top-3 text-gray-500"
+                    >
+                        {showPassword ? 'Hide' : 'Show'}
+                    </button>
+                </div>
 
                 <button
                     type="submit"

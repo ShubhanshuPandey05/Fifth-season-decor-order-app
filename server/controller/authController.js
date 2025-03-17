@@ -128,10 +128,15 @@ export const userVerification = async (req, res) => {
             return
         }
         if (tempToken == user.Temp_Token) {
-            user.Authorized = true
-            await user.save()
-            await addRegistration(user);
-            res.status(200).json({ message: "user verified" })
+            if (user.Authorized == false) {
+                user.Authorized = true
+                await user.save()
+                await addRegistration(user);
+                res.status(200).json({ message: "user verified" })
+            }
+            else{
+                res.status(200).json({ message: "User already verified" })
+            }
         }
     } catch (error) {
         res.status(500).json({ message: "Invalid Token" })
