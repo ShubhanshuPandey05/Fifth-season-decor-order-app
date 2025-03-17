@@ -3,6 +3,7 @@ import { Link } from 'react-router-dom';
 import useLogin from '../hooks/useLogin';
 
 export default function LoginComponent() {
+    const [showPassword, setShowPassword] = useState(false);
     const { login } = useLogin();
     const [data, setData] = useState({
         MobileNo: '',
@@ -29,15 +30,24 @@ export default function LoginComponent() {
                     required
                 />
 
-                <input
-                    type="password"
-                    name="password"
-                    className="h-12 p-4 mb-6 w-full border rounded-lg"
-                    placeholder="Password"
-                    value={data.Password}
-                    onChange={(e) => setData({ ...data, Password: e.target.value })}
-                    required
-                />
+                <div className="relative w-full">
+                    <input
+                        type={showPassword ? 'text' : 'password'}
+                        name="Password"
+                        className="h-12 p-4 mb-6 w-full border rounded-lg"
+                        placeholder="Password"
+                        value={data.Password}
+                        onChange={(e) => setData({ ...data, Password: e.target.value })}
+                        required
+                    />
+                    <button
+                        type="button"
+                        onClick={() => setShowPassword(!showPassword)}
+                        className="absolute right-4 top-3 text-gray-500"
+                    >
+                        {showPassword ? 'Hide' : 'Show'}
+                    </button>
+                </div>
 
                 <button
                     type="submit"

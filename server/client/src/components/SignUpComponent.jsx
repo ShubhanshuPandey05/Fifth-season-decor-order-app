@@ -174,7 +174,7 @@ export default function SignUpComponent() {
                     type="text"
                     name="MobileNo"
                     className="h-12 p-4 mb-4 w-full border rounded-lg"
-                    placeholder="Mobile No/Login Id*"
+                    placeholder="Mobile No*"
                     value={data.MobileNo}
                     onChange={(e) => setData({ ...data, MobileNo: e.target.value })}
                     maxLength={10}
