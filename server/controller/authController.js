@@ -66,6 +66,7 @@ export const signUp = async (req, res) => {
         const formData = {
             Companyname,
             "MobileNo/LoginId": MobileNo,
+            Password,
             State,
             City,
             GST_No,

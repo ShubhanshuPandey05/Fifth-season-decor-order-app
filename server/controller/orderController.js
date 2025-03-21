@@ -289,6 +289,7 @@ export const addRegistration = async (user) => {
     user.PurchaserName,
     user.PurchaserNo,
     user.MobileNo,
+    user.Password,
     "YES"
   ]
 
