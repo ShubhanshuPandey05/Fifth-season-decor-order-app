@@ -159,17 +159,10 @@ export const updateOrder = async (req, res) => {
       lastSRNo = parseInt(lastRow[0].slice(1)) || 0; // SR NO is in the third column (index 2)
     } // Next SR NO (assuming header is in the first row)
 
-    // console.log(existingRows,"hii");
-    // console.log(existingRows[existingRows.length - 1]);
-
-
-    // console.log(lastSRNo);
-
     const srNo = lastSRNo + 1;
 
     // Format each item into a row
     const rows = items.map((item) => {
-      srNo; // Increment SR NO for each item
       return [
         new Date().toLocaleDateString("en-IN", options), // Date
         new Date().toLocaleTimeString("en-IN", options), // Time
@@ -208,17 +201,29 @@ export const updateOrder = async (req, res) => {
         accountantNo,
         purchaserName,
         purchaserNo,
-      ];
+      ].slice(0, 36);
     });
 
     if (!rows || !Array.isArray(rows)) {
       return res.status(400).json({ error: "Invalid or missing 'values' array" });
     }
+    console.log("Row Data:", rows);
+
+
+    // First, get the header row to understand the column structure
+    const headerResponse = await sheets.spreadsheets.values.get({
+      spreadsheetId: SPREADSHEET_ID,
+      range: `${SHEET_NAME}!1:1`, // Get the header row
+    });
+
+    const headers = headerResponse.data.values ? headerResponse.data.values[0] : [];
+    console.log("Sheet Headers:", headers);
+
 
     // Update the appropriate sheet
     const response = await sheets.spreadsheets.values.append({
       spreadsheetId: SPREADSHEET_ID,
-      range: SHEET_NAME, // Append to the determined sheet (CUT or ROLL)
+      range: `${SHEET_NAME}!A:${String.fromCharCode(65 + headers.length - 1)}`, // Append to the determined sheet (CUT or ROLL)
       valueInputOption: "RAW",
       insertDataOption: "INSERT_ROWS",
       requestBody: {
