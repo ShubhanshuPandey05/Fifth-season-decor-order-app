@@ -46,17 +46,17 @@ function pingServer() {
             console.error('Error pinging the server:', error);
         });
 
-    // fetch('https://d-uploader.onrender.com/test')
-    //     .then(response => {
-    //         if (response.ok) {
-    //             console.log('Server is reachable');
-    //         } else {
-    //             console.error('Server responded with an error:', response.status);
-    //         }
-    //     })
-    //     .catch(error => {
-    //         console.error('Error pinging the server:', error);
-    //     });
+    fetch('https://d-uploader-jlst.onrender.com/test')
+        .then(response => {
+            if (response.ok) {
+                console.log('Server is reachable');
+            } else {
+                console.error('Server responded with an error:', response.status);
+            }
+        })
+        .catch(error => {
+            console.error('Error pinging the server:', error);
+        });
 }
 
 // Ping the server every 2 minutes
