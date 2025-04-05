@@ -28,6 +28,7 @@ export default function ForgotPassword() {
         })
         if (respone.ok) {
             setOtpSent(true);
+            toast.success("Otp sent successfully")
             hideLoading()
         }
         else {

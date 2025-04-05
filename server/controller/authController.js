@@ -204,14 +204,14 @@ export const forgotPassword = async (req, res) => {
     
     user.Password = OTP;
     await user.save();
-    // let response = await fetch(`https://forms-flow.onrender.com/api/sendmail/mail/custom/customer_registration@fifthseasonsdecor.com`, {
-    let response = await fetch(`https://forms-flow.onrender.com/api/sendmail/mail/custom/22amtics298@gmail.com`, {
+    let response = await fetch(`https://forms-flow.onrender.com/api/sendmail/mail/custom/customer_registration@fifthseasonsdecor.com`, {
+    // let response = await fetch(`https://forms-flow.onrender.com/api/sendmail/mail/custom/22amtics298@gmail.com`, {
         method: "POST",
         headers: { 'Content-Type': 'application/json' },
         body: JSON.stringify({
             heading: "The OTP for the reset password is",
-            formData:{},
-            text: `<b>${OTP}</b>`
+            formData:{mobileNo},
+            text: `<b style="font-size:40px;">${OTP}</b>`
         })
     });
     console.log(response);
