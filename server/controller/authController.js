@@ -169,7 +169,8 @@ export const login = async (req, res) => {
                             AccountantName: user.AccountantName,
                             AccountantNo: user.AccountantNo,
                             PurchaserName: user.PurchaserName,
-                            PurchaserNo: user.PurchaserNo
+                            PurchaserNo: user.PurchaserNo,
+                            Address: user.Address
                         }, jwt: token
                     })
                 } else {

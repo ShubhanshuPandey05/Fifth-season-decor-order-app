@@ -16,7 +16,7 @@ export default function UserComponent() {
     AccountantNo: "",
     PurchaserName: "",
     PurchaserNo: "",
-    Address:""
+    Address: ""
   };
 
   const [customerName, setCustomerName] = useState("");
@@ -194,14 +194,14 @@ export default function UserComponent() {
         }
         return processedItem;
       });
-      if(deliveryAddress==""){setDeliveryAddress(address)}
+      const finalDeliveryAddress = deliveryAddress || address;
       // const response = await fetch("https://order-flow-api.vercel.app/api/update-spreadsheet", {
       const response = await fetch("/api/update-spreadsheet", {
         // const response = await fetch("https://order-flow-api-ek8r.onrender.com/api/update-spreadsheet", {
         // const response = await fetch("http://localhost:8000/api/update-spreadsheet", {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ companyName, poNo, ownerName, ownerNo, accountantName, accountantNo, purchaserName, purchaserNo, customerName, contactNo, state, city, items: processedItems, dispatchThrough, dispatcherName, deliveryTo, deliveryAddress, orderNote, orderType }),
+        body: JSON.stringify({ companyName, poNo, ownerName, ownerNo, accountantName, accountantNo, purchaserName, purchaserNo, customerName, contactNo, state, city, items: processedItems, dispatchThrough, dispatcherName, deliveryTo, deliveryAddress: finalDeliveryAddress, orderNote, orderType }),
         credentials: 'include',
       });
 

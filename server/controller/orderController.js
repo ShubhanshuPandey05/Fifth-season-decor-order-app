@@ -207,7 +207,7 @@ export const updateOrder = async (req, res) => {
     if (!rows || !Array.isArray(rows)) {
       return res.status(400).json({ error: "Invalid or missing 'values' array" });
     }
-    console.log("Row Data:", rows);
+    // console.log("Row Data:", rows);
 
 
     // First, get the header row to understand the column structure
@@ -217,7 +217,7 @@ export const updateOrder = async (req, res) => {
     });
 
     const headers = headerResponse.data.values ? headerResponse.data.values[0] : [];
-    console.log("Sheet Headers:", headers);
+    // console.log("Sheet Headers:", headers);
 
 
     // Update the appropriate sheet
