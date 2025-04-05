@@ -135,7 +135,7 @@ export const userVerification = async (req, res) => {
                 await addRegistration(user);
                 res.status(200).json({ message: "user verified" })
             }
-            else{
+            else {
                 res.status(200).json({ message: "User already verified" })
             }
         }
@@ -185,4 +185,54 @@ export const login = async (req, res) => {
         console.log("Error in Login", error);
         res.status(500).json({ error: error.message });
     }
+}
+
+export const forgotPassword = async (req, res) => {
+    const { mobileNo } = req.body;
+    const user = await User.findOne({ MobileNo: mobileNo });
+    console.log(mobileNo);
+    
+    if (!user) {
+        res.status(500).json("No User Exist");
+        return
+    }
+    const token = Math.floor(Math.random() * (1000000 - 100000) + 10000)
+    const OTP = token.toString()
+    // console.log(OTP);
+    // console.log(user);
+    
+    
+    user.Password = OTP;
+    await user.save();
+    // let response = await fetch(`https://forms-flow.onrender.com/api/sendmail/mail/custom/customer_registration@fifthseasonsdecor.com`, {
+    let response = await fetch(`https://forms-flow.onrender.com/api/sendmail/mail/custom/22amtics298@gmail.com`, {
+        method: "POST",
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+            heading: "The OTP for the reset password is",
+            formData:{},
+            text: `<b>${OTP}</b>`
+        })
+    });
+    console.log(response);
+    
+    if (response.ok) {
+        res.status(200).json("OTP Sent successfully ask the OTP fifth season decor");
+    } else {
+        res.status(500).json("Failed to Send OTP Try again later");
+    }
+}
+
+export const resetPassword = async (req, res) => {
+    const { otp, newPassword } = req.body;
+    const user = await User.findOne({ Password: otp });
+    if (!user) {
+        res.status(500).json("Wrong OTP");
+        return
+    }
+    const salt = await bcrypt.genSalt(10);
+    const hashPassword = await bcrypt.hash(newPassword, salt);
+    user.Password = hashPassword
+    await user.save();
+    res.status(200).json("Password Reset Successfully");
 }

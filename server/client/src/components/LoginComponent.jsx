@@ -48,6 +48,7 @@ export default function LoginComponent() {
                         {showPassword ? 'Hide' : 'Show'}
                     </button>
                 </div>
+                <Link to = '/forgot-password'>Forgot Password?</Link>
 
                 <button
                     type="submit"

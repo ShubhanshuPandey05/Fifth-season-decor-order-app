@@ -10,6 +10,7 @@ import { LoadingProvider } from "./context/LoadingContext";
 import LoadingScreen from "./components/LoadingScreen";
 import OrderPage from './pages/OrderPage'
 import BottomNavBar from "./components/BottomNavBar";
+import ForgotPassword from './components/ForgotPassword'
 
 function App() {
   const { isAuth } = useAuthContext();
@@ -24,6 +25,7 @@ function App() {
             <Routes>
               <Route path="/login" element={isAuth ? <Navigate to="/" /> : <LoginPage />} />
               <Route path="/signUp" element={isAuth ? <Navigate to="/" /> : <SignUpPage />} />
+              <Route path="/forgot-password" element={isAuth ? <Navigate to="/" /> : <ForgotPassword />} />
               <Route path="/" element={isAuth ? <UserPage /> : <Navigate to="/login" />} />
               <Route path="/your-order" element={isAuth ? <OrderPage /> : <Navigate to="/login" />} />
             </Routes>
