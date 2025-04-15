@@ -195,6 +195,8 @@ export default function UserComponent() {
         return processedItem;
       });
       const finalDeliveryAddress = deliveryAddress || address;
+      console.log(finalDeliveryAddress);
+      
       // const response = await fetch("https://order-flow-api.vercel.app/api/update-spreadsheet", {
       const response = await fetch("/api/update-spreadsheet", {
         // const response = await fetch("https://order-flow-api-ek8r.onrender.com/api/update-spreadsheet", {
@@ -553,6 +555,7 @@ export default function UserComponent() {
                       onChange={(e) => handleItemChange(index, 'quantity', e.target.value)}
                       className="border-[#8c7764] rounded-xl p-2 w-full border-b text-[#8c7764] bg-[#fffdf5]"
                       min={orderType == "ROLL" ? 65 : 0}
+                      max={orderType == "CUT" ? 65 : undefined}
                       step="any"
                       required
                     />

@@ -186,7 +186,7 @@ export const updateOrder = async (req, res) => {
         deliveryTo,
         deliveryAddress,
         orderNote,// Order Note
-        "Pending", // Order Status
+        "", // Order Status
         "",
         "",
         "",
